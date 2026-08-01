@@ -65,7 +65,7 @@ if (isMac) {
   
   const tagline = document.querySelector(".tagline");
   if (tagline) {
-    tagline.textContent = "Windows will show a security warning when \ndownloading cuz I haven’t payed to verify the app with \nMicrosoft (its like 600usd) just install it anyways ;)";
+    tagline.innerHTML = "Windows will show a security warning when <br>downloading cuz I haven’t payed to verify the app with<br>Microsoft (its like 600usd) just install it anyways ;)";
   }
 } else {
   // Fallback: show both as primary style if undetermined
