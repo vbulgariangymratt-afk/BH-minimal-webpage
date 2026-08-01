@@ -1,15 +1,11 @@
 {
   "version": "3.0.0",
   "notes": "Backbone Hierarchy update v3.0.0",
-  "pub_date": "2026-08-01T21:23:54.907Z",
+  "pub_date": "2026-08-01T21:25:43.418Z",
   "platforms": {
-    "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUUHV6WklVUFB3d1ZrU3BubkpYM2k4emlpdnZrZkhqZ243eDk1QmJScEFEMGoya3Y4endSU2t5dWdGajc5Ymg0NnZ0UitqdTVUaHBwaEVoTkdlZTVPV3JPM3hScjE3OUFvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1NjE5NDM0CWZpbGU6QmFja2JvbmUgSGllcmFyY2h5LmFwcC50YXIuZ3oKR0hvUXZ3TXlrOXlULytnT1NJSzlpWHlac1Iwb2FuaEtjclUvdlBxYmswKzlXdUVTcEc0azR6cTkvODM2Q0lHeWk5c3RzMW4wck1mQmttb0hWTzRHRGc9PQo=",
-      "url": "https://github.com/vbulgariangymratt-afk/Backbone-s-minimal-webpage/releases/download/latest/Backbone-macOS.tar.gz"
-    },
-    "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUUHV6WklVUFB3d1ZrU3BubkpYM2k4emlpdnZrZkhqZ243eDk1QmJScEFEMGoya3Y4endSU2t5dWdGajc5Ymg0NnZ0UitqdTVUaHBwaEVoTkdlZTVPV3JPM3hScjE3OUFvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1NjE5NDM0CWZpbGU6QmFja2JvbmUgSGllcmFyY2h5LmFwcC50YXIuZ3oKR0hvUXZ3TXlrOXlULytnT1NJSzlpWHlac1Iwb2FuaEtjclUvdlBxYmswKzlXdUVTcEc0azR6cTkvODM2Q0lHeWk5c3RzMW4wck1mQmttb0hWTzRHRGc9PQo=",
-      "url": "https://github.com/vbulgariangymratt-afk/Backbone-s-minimal-webpage/releases/download/latest/Backbone-macOS.tar.gz"
+    "windows-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUUHV6WklVUFB3d1JDRk9XdVJDdUVWWG4rczdQM2tLUy9TeWdDcVZ0bjE4R2Y5djFBMDV5S2FHdFhYQU1hTVN2MVlHMUtaaHNDVHNiU3hjMFNXUG53ZVNEaEhsVVpURkF3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1NjE5NTQzCWZpbGU6QmFja2JvbmUgSGllcmFyY2h5XzMuMC4wX3g2NC1zZXR1cC5leGUKZHFJczRCakFXTUc2T3hPcERheUJUcTc1b1N1YTJZVjIvbnVpbFBQVll6OW5OWFhxd0x4WGdESncxSFpUeUJQdEFJeHZuQkRyZk5CVzlJUlMyY25UQXc9PQo=",
+      "url": "https://github.com/vbulgariangymratt-afk/Backbone-s-minimal-webpage/releases/download/latest/Backbone-Setup.exe"
     }
   }
 }
