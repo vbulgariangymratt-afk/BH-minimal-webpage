@@ -57,6 +57,7 @@ main {
   color: #c8cce0;
   max-width: 550px;
   line-height: 1.6;
+  white-space: pre-line;
 }
 
 /* ── Download Area ── */
