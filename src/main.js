@@ -62,6 +62,11 @@ if (isMac) {
   btnWin.classList.remove("secondary");
   btnWin.classList.add("primary");
   badgeWin.classList.add("show");
+  
+  const tagline = document.querySelector(".tagline");
+  if (tagline) {
+    tagline.textContent = "Windows will show a security warning when downloading cuz I haven’t payed to verify the app with Microsoft, just install it anyways ;)";
+  }
 } else {
   // Fallback: show both as primary style if undetermined
   btnWin.classList.remove("secondary");
