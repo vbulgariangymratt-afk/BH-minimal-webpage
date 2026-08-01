@@ -55,7 +55,7 @@ main {
   font-size: clamp(1.1rem, 3vw, 1.4rem);
   font-weight: 400;
   color: #c8cce0;
-  max-width: 480px;
+  max-width: 550px;
   line-height: 1.6;
 }
 
