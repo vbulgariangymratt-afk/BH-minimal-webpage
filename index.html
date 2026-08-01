@@ -236,6 +236,11 @@
       btnMac.classList.remove("secondary");
       btnMac.classList.add("primary");
       badgeMac.classList.add("show");
+      
+      const tagline = document.querySelector(".tagline");
+      if (tagline) {
+        tagline.innerHTML = 'For Mac you\'ll get "can’t be opened" cuz its not notarized by Apple, not a problem, just open Terminal on your Mac, paste this exact command and press enter:<br><br><code style="background: rgba(128,128,128,0.15); padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace; font-size: 0.9em; word-break: break-all;">xattr -cr /Applications/Backbone\\ Hierarchy.app</code><br><br>Drag Backbone Hierarchy into your applications folder first';
+      }
     } else if (isWindows) {
       btnWin.classList.remove("secondary");
       btnWin.classList.add("primary");
