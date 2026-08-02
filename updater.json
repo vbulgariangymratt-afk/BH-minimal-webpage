@@ -1,11 +1,19 @@
 {
-  "version": "3.0.0",
-  "notes": "Backbone Hierarchy update v3.0.0",
-  "pub_date": "2026-08-01T21:25:43.418Z",
+  "version": "3.0.1",
+  "notes": "Backbone Hierarchy update v3.0.1",
+  "pub_date": "2026-08-02T14:48:24.221Z",
   "platforms": {
     "windows-x86_64": {
       "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUUHV6WklVUFB3d1JDRk9XdVJDdUVWWG4rczdQM2tLUy9TeWdDcVZ0bjE4R2Y5djFBMDV5S2FHdFhYQU1hTVN2MVlHMUtaaHNDVHNiU3hjMFNXUG53ZVNEaEhsVVpURkF3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1NjE5NTQzCWZpbGU6QmFja2JvbmUgSGllcmFyY2h5XzMuMC4wX3g2NC1zZXR1cC5leGUKZHFJczRCakFXTUc2T3hPcERheUJUcTc1b1N1YTJZVjIvbnVpbFBQVll6OW5OWFhxd0x4WGdESncxSFpUeUJQdEFJeHZuQkRyZk5CVzlJUlMyY25UQXc9PQo=",
       "url": "https://github.com/vbulgariangymratt-afk/Backbone-s-minimal-webpage/releases/download/latest/Backbone-Setup.exe"
+    },
+    "darwin-aarch64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUUHV6WklVUFB3d1U5Q3U4L1M1M1AyS2NPK0JENW44NWR5bkFvaGh1TW94cWlHSW1vNVdJNERJSGtIMnRXemdYNTMvRU5EV25MSXNsZXg1OFc4Yi9DVkh0cm9GeFIzL3cwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1NjgyMTAzCWZpbGU6QmFja2JvbmUgSGllcmFyY2h5LmFwcC50YXIuZ3oKSFMrZldLcUlMSm92WEhvc1U2ZEpwSm9GKzNXYUNla3RaMExYemorMG9aYzdSR1JZY0RlQWZzV2xyZW8xYVRxenF4Z0hXZ3dRMDJhcDRFOC9pSmFWQ1E9PQo=",
+      "url": "https://github.com/vbulgariangymratt-afk/Backbone-s-minimal-webpage/releases/download/latest/Backbone-macOS.tar.gz"
+    },
+    "darwin-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUUHV6WklVUFB3d1U5Q3U4L1M1M1AyS2NPK0JENW44NWR5bkFvaGh1TW94cWlHSW1vNVdJNERJSGtIMnRXemdYNTMvRU5EV25MSXNsZXg1OFc4Yi9DVkh0cm9GeFIzL3cwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1NjgyMTAzCWZpbGU6QmFja2JvbmUgSGllcmFyY2h5LmFwcC50YXIuZ3oKSFMrZldLcUlMSm92WEhvc1U2ZEpwSm9GKzNXYUNla3RaMExYemorMG9aYzdSR1JZY0RlQWZzV2xyZW8xYVRxenF4Z0hXZ3dRMDJhcDRFOC9pSmFWQ1E9PQo=",
+      "url": "https://github.com/vbulgariangymratt-afk/Backbone-s-minimal-webpage/releases/download/latest/Backbone-macOS.tar.gz"
     }
   }
 }
