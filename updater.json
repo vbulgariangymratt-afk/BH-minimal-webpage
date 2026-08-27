@@ -1,10 +1,10 @@
 {
   "version": "3.0.6",
   "notes": "Backbone Hierarchy update v3.0.6",
-  "pub_date": "2026-08-27T00:51:28.835Z",
+  "pub_date": "2026-08-27T00:56:00.130Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUUHV6WklVUFB3d2FSWHNjQ0dIcDFzaVZmY2dhbFQ2bzhWbDZSTXJhRlhpZlgxZ2hvNm1WN2J6Wko3S2IwUUdMTk54OWFtSm5GWExPaWhVbnExc3ppY2VDS3NTZWU2U0FVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NzkxNjE5CWZpbGU6QmFja2JvbmUgSGllcmFyY2h5XzMuMC41X3g2NC1zZXR1cC5leGUKR0NhalliSkdua2ZpNWZzbDFseldRaVE4S2lGSUdrRG5GKzRwZkRDTWNOTEtVWFhjOWpNcjVMQjZlWFQ3SWNKdGg4RmlsallydGRHMkhtZXR6c3hFQVE9PQo=",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUUHV6WklVUFB3d1RZQ2hrSnp6WWh1MEpWV2tuazZxcXpZUFpDVFNKU0R4ZG9lK3h3WlZzS08xNVJOeE45MERKZ3F4a1F0NGhzWTZjaHM0eFFPY0lubXFiNTlvaElLUWdJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NzkyMTU3CWZpbGU6QmFja2JvbmUgSGllcmFyY2h5XzMuMC42X3g2NC1zZXR1cC5leGUKZlJ2eVhmVGZZVTBydVd3V0ZzY2FpTUZoaW9ySG9FWlNTTmc1L2h3MDVtLzRqU2VIOHoyUlZXR2QwZ041THBjMVhmNWhaZVFORTZEY1ArNUZLVE4wQnc9PQo=",
       "url": "https://github.com/vbulgariangymratt-afk/Backbone-s-minimal-webpage/releases/download/latest/Backbone-Setup.exe"
     },
     "darwin-aarch64": {
