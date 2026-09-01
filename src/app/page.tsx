@@ -7,11 +7,14 @@ import { Footer } from '@/components/footer/Footer';
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center bg-transparent text-[#e8e8f0]">
-      {/* 2.1 Hero & Downloads Unified First Screen */}
-      <Hero />
+      {/* 2.1 & 2.2 Hero Curtain & Problems Flow Container */}
+      <div className="relative w-full">
+        {/* 2.1 Hero & Downloads Unified First Screen (Sticky backdrop) */}
+        <Hero />
 
-      {/* 2.2 Brain Problems (Horizontal scroll + artwork carousel) */}
-      <Problems />
+        {/* 2.2 Brain Problems (Horizontal scroll + artwork carousel rolling over Hero) */}
+        <Problems />
+      </div>
 
       {/* 2.3 Conceptual Statement & Pricing (MONEEEEY) */}
       <ConceptualStatement />

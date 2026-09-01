@@ -23,7 +23,7 @@ import { ConceptPricing } from './ConceptPricing';
  */
 export function ConceptualStatement() {
   const sectionRef = useRef<HTMLElement>(null);
-  const rafIdRef = useRef<number | null>(null);
+  const atmosphereRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
   const handlePurchaseClick = () => {
@@ -32,39 +32,58 @@ export function ConceptualStatement() {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
+    let rafId: number | null = null;
+    let targetProgress = 0;
+    let currentProgress = 0;
+    let lastRenderedProgress = -1;
 
-        // Start detecting smoothly as the section enters the viewport
-        const startTrigger = windowHeight;
-        const scrolled = startTrigger - rect.top;
-        
-        // Paced tightly across entry and sticky scroll to eliminate dead scroll space
-        const totalDistance = windowHeight * 1.25;
+    const computeTarget = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
 
-        if (totalDistance > 0) {
-          const scrollFactor = Math.max(0, Math.min(1, scrolled / totalDistance));
-          setScrollProgress((prev) => {
-            if (Math.abs(prev - scrollFactor) < 0.002) return prev;
-            return scrollFactor;
-          });
-        }
+      // Start detecting smoothly as the section enters the viewport
+      const startTrigger = windowHeight;
+      const scrolled = startTrigger - rect.top;
+      
+      // Paced across entry and full sticky scroll to pan the artwork from top to bottom
+      const totalDistance = windowHeight * 1.85;
+
+      if (totalDistance > 0) {
+        targetProgress = Math.max(0, Math.min(1, scrolled / totalDistance));
+      } else {
+        targetProgress = 0;
       }
     };
 
     const tick = () => {
-      handleScroll();
-      rafIdRef.current = requestAnimationFrame(tick);
+      currentProgress += (targetProgress - currentProgress) * 0.18;
+
+      // 1. Direct GPU transform on the heavy 170vh background atmosphere image
+      if (atmosphereRef.current) {
+        const translateY = -(currentProgress * 70);
+        atmosphereRef.current.style.transform = `translate3d(0, ${translateY.toFixed(3)}vh, 0)`;
+      }
+
+      // 2. Smoothly update text decrypting progress when changed
+      if (Math.abs(currentProgress - lastRenderedProgress) > 0.003) {
+        lastRenderedProgress = currentProgress;
+        setScrollProgress(currentProgress);
+      }
+
+      rafId = requestAnimationFrame(tick);
     };
 
-    rafIdRef.current = requestAnimationFrame(tick);
+    const handleScroll = () => computeTarget();
+
+    computeTarget();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    rafId = requestAnimationFrame(tick);
 
     return () => {
-      if (rafIdRef.current !== null) {
-        cancelAnimationFrame(rafIdRef.current);
-        rafIdRef.current = null;
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
       }
     };
   }, []);
@@ -73,13 +92,16 @@ export function ConceptualStatement() {
     <section
       ref={sectionRef}
       id="concept"
-      className="relative w-full h-[130vh] bg-black select-none isolate"
+      className="relative z-20 w-full h-[200vh] bg-black select-none isolate border-t border-white/[0.08] shadow-[0_-30px_70px_rgba(0,0,0,0.95)]"
     >
       {/* Sticky Viewport Frame */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between p-6 sm:p-10 lg:p-14 relative">
         
-        {/* Layer 0: Mirrored Background Atmosphere Artwork */}
-        <ConceptAtmosphere imageSrc="/images/this one.webp" />
+        {/* Layer 0: Mirrored Background Atmosphere Artwork with Smooth Vertical Parallax */}
+        <ConceptAtmosphere
+          ref={atmosphereRef}
+          imageSrc="/images/redish cropped again.jpeg"
+        />
 
         {/* Layer 1: Top-Right Marble Medusa Sculpture */}
         <ConceptMedusa />

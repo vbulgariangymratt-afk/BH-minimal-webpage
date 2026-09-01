@@ -14,14 +14,14 @@ interface ConceptShadowProps {
 export function ConceptShadow({ className = '' }: ConceptShadowProps) {
   return (
     <div className={`absolute inset-0 pointer-events-none select-none overflow-hidden ${className}`}>
-      {/* 1. Center / Bottom Transition Shadow */}
+      {/* 1. Center / Bottom Transition Shadow (Stretched downwards to fully cover bottom edge) */}
       <div
         className="absolute pointer-events-none"
         style={{
           left: '65.7%',
           top: '68.5%',
           width: '43.5%',
-          height: '36%',
+          height: '60%',
           backgroundColor: '#000000',
           filter: 'blur(60px)',
           opacity: 1,
@@ -41,6 +41,18 @@ export function ConceptShadow({ className = '' }: ConceptShadowProps) {
           filter: 'blur(40px)',
           opacity: 1,
           borderRadius: '0%',
+        }}
+      />
+
+      {/* 3. Right-Side Bottom Transition Shadow (Starts at 65.7%, strictly matching existing shadow boundary) */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          left: '65.7%',
+          bottom: 0,
+          right: 0,
+          height: '100px',
+          background: 'linear-gradient(to top, #000000 60%, rgba(0,0,0,0) 100%)',
         }}
       />
     </div>

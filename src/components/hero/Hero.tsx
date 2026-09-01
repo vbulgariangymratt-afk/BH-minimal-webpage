@@ -22,9 +22,9 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
   const [isMuted, setIsMuted] = useState(true);
   const hasVideo = Boolean(videoSrc);
 
-  // Parallax offsets
-  const [bgParallaxY, setBgParallaxY] = useState(0);
-  const [fgParallaxY, setFgParallaxY] = useState(0);
+  const bgRef = useRef<HTMLDivElement>(null);
+  const h1Ref = useRef<HTMLHeadingElement>(null);
+  const videoCardRef = useRef<HTMLDivElement>(null);
 
   // One-shot IntersectionObserver: fade in when section enters viewport
   useEffect(() => {
@@ -44,25 +44,45 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
     return () => observer.disconnect();
   }, []);
 
-  // Optical parallax depth calculation
+  // Optical parallax calculation: Headline and video card float upward smoothly via RAF lerp while background stays static
   useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
+    let rafId: number;
+    let targetForegroundY = 0;
+    let currentForegroundY = 0;
+
+    const computeTarget = () => {
+      const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
-
-      const totalSpan = windowHeight + rect.height;
-      const currentPos = windowHeight - rect.top;
-      const scrollRatio = currentPos / totalSpan;
-      const delta = (scrollRatio - 0.5) * 2;
-
-      setBgParallaxY(delta * 120);
-      setFgParallaxY(delta * -20);
+      // When scrolling down past hero (0 to 100vh), float foreground up at 38% parallax speed
+      if (scrollY <= windowHeight * 1.5) {
+        targetForegroundY = -(scrollY * 0.38);
+      }
     };
 
+    const tick = () => {
+      currentForegroundY += (targetForegroundY - currentForegroundY) * 0.18;
+      const transformValue = `translate3d(0, ${currentForegroundY.toFixed(2)}px, 0)`;
+      
+      if (h1Ref.current) {
+        h1Ref.current.style.transform = transformValue;
+      }
+      if (videoCardRef.current) {
+        videoCardRef.current.style.transform = transformValue;
+      }
+      
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const handleScroll = () => computeTarget();
+
+    computeTarget();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    rafId = requestAnimationFrame(tick);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const handleLoadedMetadata = () => {
@@ -70,7 +90,11 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
       const totalSeconds = Math.floor(videoRef.current.duration);
       const minutes = Math.floor(totalSeconds / 60);
       const seconds = totalSeconds % 60;
-      setDuration(`${minutes}:${seconds.toString().padStart(2, '0')}`);
+      if (minutes > 0) {
+        setDuration(`${minutes}:${seconds.toString().padStart(2, '0')}`);
+      } else {
+        setDuration(`${seconds}s`);
+      }
     }
   };
 
@@ -98,25 +122,31 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
     <section
       ref={sectionRef}
       id="hero"
-      className="cursor-target-zone relative w-full h-screen min-h-[700px] pl-6 sm:pl-8 lg:pl-10 pr-6 sm:pr-8 pt-8 pb-6 sm:pb-8 flex flex-col justify-end bg-transparent overflow-hidden select-none"
+      className="cursor-target-zone sticky top-0 z-0 w-full h-screen min-h-[700px] pl-6 sm:pl-8 lg:pl-10 pr-6 sm:pr-8 pt-8 pb-6 sm:pb-8 flex flex-col justify-end bg-transparent overflow-hidden select-none"
     >
       {/* 1. Full-Cover Parallax Background Canvas */}
       <div
-        className="absolute inset-0 w-full h-[125%] -top-[12%] pointer-events-none transition-transform duration-75 ease-out will-change-transform"
-        style={{
-          transform: `translate3d(0, ${bgParallaxY}px, 0)`,
-        }}
+        ref={bgRef}
+        className="absolute inset-0 w-full h-[106%] -top-[3%] pointer-events-none"
       >
         <Image
-          src="/images/crosshands.webp"
+          src="/images/Upscaled crosshands.png"
           alt="Atmospheric Background"
           fill
           sizes="100vw"
-          className="object-cover object-left md:object-[0%_center] filter contrast-100 brightness-100"
+          className="object-cover object-center filter contrast-100 brightness-100"
           priority
         />
-        {/* Subtle dark vignette blend at the bottom */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#040406] via-transparent to-black/20 pointer-events-none" />
+        {/* Fine 35mm Analog Film Grain Texture Overlay (Over artwork, behind text & video) */}
+        <div
+          className="absolute inset-0 opacity-45 mix-blend-overlay pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            backgroundSize: '128px 128px',
+          }}
+        />
+        {/* Subtle dark vignette blend at the bottom (50% lighter density) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#040406]/40 via-transparent to-transparent pointer-events-none" />
       </div>
 
       {/* 2. Bottom-Aligned Editorial Row (Headline & De-styled Controls on Left, 9:16 Video on Right) */}
@@ -125,7 +155,10 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
         <div className="flex flex-col items-start gap-4 max-w-xl xl:max-w-2xl text-left select-none self-end">
           {/* 1. Large Asymmetric Poster Headline (Ragged Right Edge) */}
           <div className="text-left pointer-events-none">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.85rem] font-bold tracking-tight text-white mix-blend-difference leading-[0.96] text-left">
+            <h1
+              ref={h1Ref}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.85rem] font-bold tracking-tight text-white mix-blend-difference leading-[0.96] text-left"
+            >
               Prosthetic brain for ADHD<br />
               founders &amp; entrepreneurs
             </h1>
@@ -136,7 +169,10 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
         </div>
 
         {/* Center-Right: Large Vertical (9:16) Video Container (Vertically Centered with Equal Top & Bottom Space) */}
-        <div className="relative lg:self-center h-[86vh] max-h-[820px] min-h-[540px] aspect-[9/16] rounded-[30px] overflow-hidden shadow-[0_35px_80px_rgba(0,0,0,0.55)] border border-black/20 bg-black/60 backdrop-blur-xl shrink-0 mr-auto lg:mr-52 xl:mr-64 my-auto">
+        <div
+          ref={videoCardRef}
+          className="relative lg:self-center h-[86vh] max-h-[820px] min-h-[540px] aspect-[9/16] rounded-[30px] overflow-hidden shadow-[0_35px_80px_rgba(0,0,0,0.55)] border border-black/20 bg-black/60 backdrop-blur-xl shrink-0 mr-auto lg:mr-52 xl:mr-64 my-auto"
+        >
           {hasVideo && videoSrc ? (
             <video
               ref={videoRef}
@@ -165,7 +201,7 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
               <div className="w-full flex items-center justify-between">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] text-zinc-200">
                   <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                  <span>30s Vertical Pitch</span>
+                  <span>{duration ? `${duration} Vertical Pitch` : '30s Vertical Pitch'}</span>
                 </div>
               </div>
 
@@ -187,6 +223,16 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
               {/* Bottom Spec Badge */}
               <div className="w-full pt-3 border-t border-white/10 text-[10px] text-zinc-400 font-mono text-center">
                 9:16 VERTICAL FORMAT
+              </div>
+            </div>
+          )}
+
+          {/* Top Pill / Badge with live dynamic duration (When real video is loaded) */}
+          {hasVideo && (
+            <div className="absolute top-4 left-4 z-20 pointer-events-none">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/15 text-[11px] text-zinc-200 font-mono">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                <span>{duration ? `${duration} Pitch` : 'Video Pitch'}</span>
               </div>
             </div>
           )}

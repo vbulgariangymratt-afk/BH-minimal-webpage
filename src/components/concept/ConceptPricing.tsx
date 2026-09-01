@@ -22,17 +22,17 @@ export function ConceptPricing({
   const NOTE_BODY = "you get the full desktop app, unlimited usage and\nyou officially become a boner";
 
   // Delay the pricing typewriter so it activates smoothly following the headline reveal
-  const priceProg = Math.max(0, Math.min(1, (scrollProgress - 0.38) / 0.30));
+  const priceProg = Math.max(0, Math.min(1, (scrollProgress - 0.35) / 0.30));
   const visiblePriceLength = Math.ceil(priceProg * NOTE_PRICE.length);
   const currentPrice = NOTE_PRICE.slice(0, visiblePriceLength);
-  const isWritingPrice = scrollProgress >= 0.35 && priceProg < 1;
+  const isWritingPrice = scrollProgress >= 0.30 && priceProg < 1;
 
-  const bodyProg = Math.max(0, Math.min(1, (scrollProgress - 0.58) / 0.32));
+  const bodyProg = Math.max(0, Math.min(1, (scrollProgress - 0.55) / 0.30));
   const visibleBodyLength = Math.ceil(bodyProg * NOTE_BODY.length);
   const currentBody = NOTE_BODY.slice(0, visibleBodyLength);
-  const isWritingBody = scrollProgress >= 0.55 && bodyProg < 1;
+  const isWritingBody = scrollProgress >= 0.50 && bodyProg < 1;
 
-  const btnOpacity = Math.max(0, Math.min(1, (scrollProgress - 0.74) / 0.22));
+  const btnOpacity = Math.max(0, Math.min(1, (scrollProgress - 0.70) / 0.22));
 
   return (
     <div className={`self-end flex flex-col items-start text-left max-w-md lg:max-w-xl gap-3 z-10 sm:mr-16 md:mr-24 lg:mr-36 xl:mr-44 pb-8 sm:pb-12 lg:pb-16 ${className}`}>
@@ -45,9 +45,9 @@ export function ConceptPricing({
         )}
       </div>
 
-      {/* Level 1: Value Proposition (Indented Body) */}
+      {/* Level 1: Value Proposition (Indented Body with Monospace Code Font) */}
       <div className="min-h-[3rem] flex items-center pl-4 sm:pl-5">
-        <p className="font-sans text-xs sm:text-[14px] md:text-base text-zinc-300 leading-relaxed max-w-md whitespace-pre-line font-normal">
+        <p className="font-mono text-xs sm:text-[13px] md:text-[14px] text-zinc-300 leading-relaxed max-w-md whitespace-pre-line font-normal tracking-tight">
           {currentBody}
           {isWritingBody && (
             <span className="inline-block w-1.5 h-4 bg-red-500 ml-1 animate-pulse align-middle" />

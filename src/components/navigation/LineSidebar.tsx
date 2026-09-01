@@ -154,6 +154,9 @@ export function LineSidebar({
     [onItemClick]
   );
 
+  const activeIndexRef = useRef<number>(activeIndex);
+  activeIndexRef.current = activeIndex;
+
   // Auto-track active section based on window scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -166,7 +169,10 @@ export function LineSidebar({
         if (!sectionId) continue;
         const el = document.getElementById(sectionId);
         if (el && triggerPoint >= el.offsetTop) {
-          setActiveIndex(i);
+          if (i !== activeIndexRef.current) {
+            activeIndexRef.current = i;
+            setActiveIndex(i);
+          }
           break;
         }
       }

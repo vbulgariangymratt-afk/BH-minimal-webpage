@@ -69,10 +69,10 @@ export function ConceptHeadline({ scrollProgress, className = '' }: ConceptHeadl
 
   return (
     <div className={`w-full max-w-[90vw] sm:max-w-[70vw] md:max-w-[60vw] lg:max-w-[52vw] xl:max-w-[48vw] flex flex-col gap-4 sm:gap-6 pt-8 sm:pt-14 lg:pt-20 ${className}`}>
-      {/* Subtle Tag / Status Indicator with Mix-Blend Inversion */}
-      <div className="flex items-center gap-3 mix-blend-difference">
+      {/* Subtle Tag / Status Indicator with Fixed Clean Color */}
+      <div className="flex items-center gap-3">
         <span className="inline-block w-2 h-2 rounded-full bg-red-500 animate-ping" />
-        <span className="font-mono text-xs uppercase tracking-widest text-white/80">
+        <span className="font-mono text-xs uppercase tracking-widest text-zinc-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
           [ 03 // THE DEAL &bull; {Math.round(scrollProgress * 100)}% ]
         </span>
       </div>
@@ -105,8 +105,8 @@ export function ConceptHeadline({ scrollProgress, className = '' }: ConceptHeadl
         })}
       </div>
 
-      {/* Micro Sub-copy with Mix-Blend Color Inversion */}
-      <p className="font-mono text-xs sm:text-sm text-white mix-blend-difference max-w-md mt-2 leading-relaxed opacity-90">
+      {/* Micro Sub-copy with Fixed Clean Color */}
+      <p className="font-mono text-xs sm:text-sm text-zinc-300 max-w-md mt-2 leading-relaxed opacity-90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
         I like eating a lot, go to restaurants and shit, yk?
       </p>
     </div>

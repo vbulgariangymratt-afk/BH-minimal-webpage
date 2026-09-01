@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, createContext, useContext } from 'react';
+import { useEffect, useState, useRef, createContext, useContext } from 'react';
 import { PALETTES, ColorPalette } from '@/data/palettes';
 
 interface PaletteContextType {
@@ -25,6 +25,8 @@ export function BackgroundTransitionsProvider({ children }: { children: React.Re
   const currentPalette = PALETTES[selectedPaletteId] || PALETTES.palette3;
   const [activeBg, setActiveBg] = useState<string>(currentPalette.colors.hero);
 
+  const lastBgRef = useRef<string>(activeBg);
+
   useEffect(() => {
     // Map section IDs to palette color keys
     const sectionColorMap: { id: string; getColor: (p: ColorPalette) => string }[] = [
@@ -48,7 +50,11 @@ export function BackgroundTransitionsProvider({ children }: { children: React.Re
         if (el) {
           const top = el.offsetTop;
           if (triggerPoint >= top) {
-            setActiveBg(item.getColor(currentPalette));
+            const nextColor = item.getColor(currentPalette);
+            if (nextColor !== lastBgRef.current) {
+              lastBgRef.current = nextColor;
+              setActiveBg(nextColor);
+            }
             break;
           }
         }
