@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Lexend } from 'next/font/google';
+import { Lexend, Caveat } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 import { PostHogProvider } from '@/components/providers/PostHogProvider';
@@ -10,6 +10,12 @@ import { BackgroundTransitionsProvider } from '@/components/animations/Backgroun
 const lexend = Lexend({
   subsets: ['latin'],
   variable: '--font-lexend',
+  display: 'swap',
+});
+
+const caveat = Caveat({
+  subsets: ['latin'],
+  variable: '--font-caveat',
   display: 'swap',
 });
 
@@ -53,7 +59,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${lexend.variable} ${rockSalt.variable} ${unbounded.variable}`}>
+    <html lang="en" className={`${lexend.variable} ${rockSalt.variable} ${unbounded.variable} ${caveat.variable}`}>
       <body className="text-[#e8e8f0] font-sans antialiased selection:bg-white/20 selection:text-white bg-transparent">
         <PostHogProvider>
           <BackgroundTransitionsProvider>

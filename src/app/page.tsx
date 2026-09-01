@@ -1,7 +1,6 @@
 import { Hero } from '@/components/hero/Hero';
 import { Problems } from '@/components/problems/Problems';
 import { ConceptualStatement } from '@/components/concept/ConceptualStatement';
-import { Pricing } from '@/components/pricing/Pricing';
 import { ImportantStuff } from '@/components/info/ImportantStuff';
 import { Footer } from '@/components/footer/Footer';
 
@@ -14,16 +13,13 @@ export default function Home() {
       {/* 2.2 Brain Problems (Horizontal scroll + artwork carousel) */}
       <Problems />
 
-      {/* 2.3 Conceptual Statement */}
+      {/* 2.3 Conceptual Statement & Pricing (MONEEEEY) */}
       <ConceptualStatement />
 
-      {/* 2.4 Pricing */}
-      <Pricing />
-
-      {/* 2.5 Important Stuff */}
+      {/* 2.4 Important Stuff */}
       <ImportantStuff />
 
-      {/* 2.6 Footer */}
+      {/* 2.5 Footer */}
       <Footer />
     </main>
   );
