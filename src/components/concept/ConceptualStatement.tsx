@@ -92,7 +92,7 @@ export function ConceptualStatement() {
     <section
       ref={sectionRef}
       id="concept"
-      className="relative z-20 w-full h-[200vh] bg-black select-none isolate border-t border-white/[0.08] shadow-[0_-30px_70px_rgba(0,0,0,0.95)]"
+      className="relative z-20 w-full h-[200vh] bg-black select-none isolate border-t border-white/[0.08] lg:shadow-[0_-30px_70px_rgba(0,0,0,0.95)]"
     >
       {/* Sticky Viewport Frame */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between p-6 sm:p-10 lg:p-14 relative">
@@ -107,7 +107,7 @@ export function ConceptualStatement() {
         <ConceptMedusa />
 
         {/* Layer 2: Atmospheric Soft Shadow Overlays */}
-        <ConceptShadow />
+        <ConceptShadow className="hidden lg:block" />
 
         {/* Layer 3: Top-Left Decrypting Multilingual Cypher Headline */}
         <ConceptHeadline scrollProgress={scrollProgress} />

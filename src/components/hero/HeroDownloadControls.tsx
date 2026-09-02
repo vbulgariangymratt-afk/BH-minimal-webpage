@@ -34,7 +34,7 @@ export function HeroDownloadControls() {
   return (
     <div className="flex flex-col items-start gap-3 w-full text-white mix-blend-difference select-none">
       {/* 2. Download Links (Code/Console Style with $ prefix) */}
-      <div className="flex items-center gap-4 text-xs sm:text-sm font-mono lowercase tracking-wider text-white">
+      <div className="flex items-center flex-wrap gap-x-4 gap-y-2 text-xs sm:text-sm font-mono lowercase tracking-wider text-white">
         <a
           href={GITHUB_DOWNLOADS.macOS}
           onClick={() => handleDownloadClick('macOS')}

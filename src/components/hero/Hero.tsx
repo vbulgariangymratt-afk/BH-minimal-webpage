@@ -122,7 +122,7 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
     <section
       ref={sectionRef}
       id="hero"
-      className="cursor-target-zone sticky top-0 z-0 w-full h-screen min-h-[700px] pl-6 sm:pl-8 lg:pl-10 pr-6 sm:pr-8 pt-8 pb-6 sm:pb-8 flex flex-col justify-end bg-transparent overflow-hidden select-none"
+      className="cursor-target-zone relative lg:sticky top-0 z-0 w-full min-h-[100dvh] h-auto lg:h-screen lg:min-h-[700px] pl-6 sm:pl-8 lg:pl-10 pr-6 sm:pr-8 pt-10 pb-10 lg:pt-8 lg:pb-6 lg:sm:pb-8 flex flex-col justify-start lg:justify-end bg-transparent overflow-visible lg:overflow-hidden select-none"
     >
       {/* 1. Full-Cover Parallax Background Canvas */}
       <div
@@ -137,7 +137,6 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
           className="object-cover object-center filter contrast-100 brightness-100"
           priority
         />
-        {/* Fine 35mm Analog Film Grain Texture Overlay (Over artwork, behind text & video) */}
         <div
           className="absolute inset-0 opacity-45 mix-blend-overlay pointer-events-none"
           style={{
@@ -145,15 +144,14 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
             backgroundSize: '128px 128px',
           }}
         />
-        {/* Subtle dark vignette blend at the bottom (50% lighter density) */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#040406]/40 via-transparent to-transparent pointer-events-none" />
       </div>
 
-      {/* 2. Bottom-Aligned Editorial Row (Headline & De-styled Controls on Left, 9:16 Video on Right) */}
+      {/* 2. Content Row */}
       <div className="w-full flex-1 flex flex-col lg:flex-row justify-between gap-6 lg:gap-8 pb-1 sm:pb-2">
-        {/* Bottom-Left Editorial Stack: Headline -> Download Links -> Loose Footnote */}
-        <div className="flex flex-col items-start gap-4 max-w-xl xl:max-w-2xl text-left select-none self-end">
-          {/* 1. Large Asymmetric Poster Headline (Ragged Right Edge) */}
+
+        {/* DESKTOP ONLY: original left column, headline + downloads together, untouched */}
+        <div className="hidden lg:flex lg:flex-col items-start gap-4 max-w-xl xl:max-w-2xl text-left select-none self-end">
           <div className="text-left pointer-events-none">
             <h1
               ref={h1Ref}
@@ -163,15 +161,23 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
               founders &amp; entrepreneurs
             </h1>
           </div>
-
-          {/* 2 & 3. Quiet Secondary Download Links + Unbordered Footnote */}
           <HeroDownloadControls />
         </div>
 
-        {/* Center-Right: Large Vertical (9:16) Video Container (Vertically Centered with Equal Top & Bottom Space) */}
+        {/* MOBILE ONLY: headline, shown first */}
+        <div className="lg:hidden order-1 w-full text-left pointer-events-none">
+          <h1
+            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mix-blend-difference leading-[0.96] text-left"
+          >
+            Prosthetic brain for ADHD<br />
+            founders &amp; entrepreneurs
+          </h1>
+        </div>
+
+        {/* Video Container - single instance, reordered on mobile only */}
         <div
           ref={videoCardRef}
-          className="relative lg:self-center h-[86vh] max-h-[820px] min-h-[540px] aspect-[9/16] rounded-[30px] overflow-hidden shadow-[0_35px_80px_rgba(0,0,0,0.55)] border border-black/20 bg-black/60 backdrop-blur-xl shrink-0 mr-auto lg:mr-52 xl:mr-64 my-auto"
+          className="order-2 lg:order-none relative lg:self-center w-full max-w-[280px] sm:max-w-[320px] mx-auto lg:mx-0 lg:w-auto lg:max-w-none h-auto lg:h-[86vh] lg:max-h-[820px] lg:min-h-[540px] aspect-[9/16] rounded-[30px] overflow-hidden shadow-[0_35px_80px_rgba(0,0,0,0.55)] border border-black/20 bg-black/60 backdrop-blur-xl shrink-0 mr-auto lg:mr-52 xl:mr-64 my-2 lg:my-auto"
         >
           {hasVideo && videoSrc ? (
             <video
@@ -195,17 +201,13 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
               )}
             </video>
           ) : (
-            /* Vertical Video Placeholder Frame */
             <div className="relative w-full h-full flex flex-col items-center justify-between p-6 sm:p-8 text-center">
-              {/* Top Status Pill */}
               <div className="w-full flex items-center justify-between">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] text-zinc-200">
                   <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
                   <span>{duration ? `${duration} Vertical Pitch` : '30s Vertical Pitch'}</span>
                 </div>
               </div>
-
-              {/* Center Play Icon & Prompt */}
               <div className="flex flex-col items-center gap-3.5 my-auto">
                 <div className="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-white shadow-2xl">
                   <Film className="w-7 h-7" />
@@ -219,15 +221,12 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
                   </p>
                 </div>
               </div>
-
-              {/* Bottom Spec Badge */}
               <div className="w-full pt-3 border-t border-white/10 text-[10px] text-zinc-400 font-mono text-center">
                 9:16 VERTICAL FORMAT
               </div>
             </div>
           )}
 
-          {/* Top Pill / Badge with live dynamic duration (When real video is loaded) */}
           {hasVideo && (
             <div className="absolute top-4 left-4 z-20 pointer-events-none">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/15 text-[11px] text-zinc-200 font-mono">
@@ -237,7 +236,6 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
             </div>
           )}
 
-          {/* Video Overlay Controls (When real video is loaded) */}
           {hasVideo && (
             <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
               <button
@@ -256,6 +254,11 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
               </button>
             </div>
           )}
+        </div>
+
+        {/* MOBILE ONLY: downloads, shown last */}
+        <div className="lg:hidden order-3 w-full">
+          <HeroDownloadControls />
         </div>
 
       </div>

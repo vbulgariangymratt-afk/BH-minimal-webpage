@@ -1,125 +1,51 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
-import { PROBLEMS_SECTION_TITLE } from '@/data/problems';
-import { ProblemsBackground } from './ProblemsBackground';
-import { ProblemsSplineTrack } from './ProblemsSplineTrack';
-import { ProblemsProgressBar } from './ProblemsProgressBar';
+import React, { useState, useEffect } from 'react';
+import { ProblemsDesktop } from './ProblemsDesktop';
+import { ProblemsMobile } from './ProblemsMobile';
 
 /**
  * Problems
  * 
- * Orchestrator component for the "Fixes for u" / Brain Problems section.
- * Controls a single 60/120Hz requestAnimationFrame + lerp smoothing loop.
- * Updates DOM transforms directly via refs with ZERO React re-renders during scroll.
+ * Top-level responsive orchestrator for the Brain Problems ("Fixes for u") section.
+ * 
+ * Guarantees strict runtime component isolation:
+ * - On desktop (>= 1024px), ONLY `ProblemsDesktop` is mounted and running its 60/120Hz RAF loop.
+ *   `ProblemsMobile` is completely unmounted.
+ * - On mobile (< 1024px), ONLY `ProblemsMobile` is mounted and running its lightweight vertical parallax.
+ *   `ProblemsDesktop` (and all its 380vh scroll listeners & 4200px SVG elements) is completely unmounted.
+ * - CSS `display: none` is NOT used as an execution barrier; unmounted components have zero active effects or DOM nodes.
  */
 export function Problems() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const bgTrackRef = useRef<HTMLDivElement>(null);
-  const progressBarRef = useRef<HTMLDivElement>(null);
-  const percentTextRef = useRef<HTMLSpanElement>(null);
+  const [mounted, setMounted] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    let rafId: number | null = null;
-    let targetProgress = 0;
-    let currentProgress = 0;
-    let lastRenderedPercent = -1;
+    const mql = window.matchMedia('(min-width: 1024px)');
+    setIsDesktop(mql.matches);
+    setMounted(true);
 
-    const computeTarget = () => {
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // Distance over which the sticky horizontal scroll is completed
-      const totalScrollableDistance = rect.height - windowHeight;
-
-      if (totalScrollableDistance > 0) {
-        const rawProgress = -rect.top / totalScrollableDistance;
-        targetProgress = Math.max(0, Math.min(1, rawProgress));
-      } else {
-        targetProgress = 0;
-      }
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      setIsDesktop(e.matches);
     };
 
-    const tick = () => {
-      // Smooth lerp smoothing to eliminate any micro-stutter
-      currentProgress += (targetProgress - currentProgress) * 0.18;
-
-      // 1. Foreground spline + problem statements track transform (covers all 5 cards)
-      if (trackRef.current) {
-        trackRef.current.style.transform = `translate3d(-${(currentProgress * 74).toFixed(3)}%, 0, 0)`;
-      }
-
-      // 2. Background image carousel parallax transform
-      if (bgTrackRef.current) {
-        bgTrackRef.current.style.transform = `translate3d(-${(currentProgress * 42).toFixed(3)}%, 0, 0)`;
-      }
-
-      // 3. Progress bar fill line transform
-      if (progressBarRef.current) {
-        progressBarRef.current.style.transform = `scaleX(${currentProgress.toFixed(4)})`;
-      }
-
-      // 4. Percentage label direct DOM text update (Zero React re-render)
-      const currentPercent = Math.round(currentProgress * 100);
-      if (currentPercent !== lastRenderedPercent && percentTextRef.current) {
-        lastRenderedPercent = currentPercent;
-        percentTextRef.current.textContent = `${currentPercent}%`;
-      }
-
-      rafId = requestAnimationFrame(tick);
-    };
-
-    const handleScroll = () => computeTarget();
-
-    computeTarget();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    rafId = requestAnimationFrame(tick);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (rafId !== null) {
-        cancelAnimationFrame(rafId);
-      }
-    };
+    mql.addEventListener('change', handleMediaChange);
+    return () => mql.removeEventListener('change', handleMediaChange);
   }, []);
 
-  return (
-    <section
-      ref={sectionRef}
-      className="relative z-10 w-full h-[380vh] bg-[#040406] border-t border-white/[0.04] shadow-[0_-20px_45px_rgba(0,0,0,0.45)]"
-      id="problems"
-    >
-      {/* Sticky Viewport Container */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between pt-7 sm:pt-9 pb-8 sm:pb-10 px-6 sm:px-10 md:px-14">
-        
-        {/* Section Header Row (Floating in between sections with generous breathing room above images) */}
-        <div className="z-10 w-full flex items-start justify-end pr-16 sm:pr-24 md:pr-36 select-none -translate-y-1 sm:-translate-y-2">
-          {/* Right: Section Title */}
-          <div className="max-w-md sm:max-w-lg md:max-w-xl text-left">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white tracking-tight leading-[1.2]">
-              {PROBLEMS_SECTION_TITLE}
-            </h2>
-          </div>
-        </div>
+  // Before mounting on the client (during SSR / initial hydration), render a static placeholder with zero animation hooks
+  if (!mounted) {
+    return (
+      <section
+        id="problems"
+        className="relative z-10 w-full bg-[#040406] border-t border-white/[0.04] shadow-[0_-20px_45px_rgba(0,0,0,0.45)]"
+      >
+        <div className="hidden lg:block h-[380vh]" />
+        <div className="block lg:hidden min-h-[1400px]" />
+      </section>
+    );
+  }
 
-        {/* Horizontal Staggered Pathway Track */}
-        <div className="relative flex-1 w-full flex items-center overflow-visible my-auto">
-          {/* Layer 0: Background Parallax Image Carousel */}
-          <ProblemsBackground ref={bgTrackRef} />
-
-          {/* Layer 1: Foreground Text Track with Connected Spline */}
-          <ProblemsSplineTrack ref={trackRef} />
-        </div>
-
-        {/* Bottom Progress Bar */}
-        <ProblemsProgressBar
-          barRef={progressBarRef}
-          percentTextRef={percentTextRef}
-        />
-
-      </div>
-    </section>
-  );
+  // Mount ONLY the matching component; the other is completely unmounted from the React tree
+  return isDesktop ? <ProblemsDesktop /> : <ProblemsMobile />;
 }
