@@ -74,7 +74,7 @@ export function HeroDownloadControls() {
 
       {/* 3. "YOO READ THIS" Footnote */}
       {isMac && (
-        <div className="flex flex-col items-start gap-1.5 max-w-md pt-1 text-left text-white/90">
+        <div className="hidden lg:flex flex-col items-start gap-1.5 max-w-md pt-1 text-left text-white/90">
           {/* Explanatory sentence: Normal sans-serif body font */}
           <p className="font-sans text-xs sm:text-[13px] leading-relaxed text-white">
             <span className="font-mono uppercase font-bold tracking-wider mr-1 text-red-500">&gt; yoo read this:</span>{' '}
@@ -100,13 +100,21 @@ export function HeroDownloadControls() {
       )}
 
       {isWindows && (
-        <div className="flex flex-col items-start gap-1 max-w-md pt-1 text-left text-white/90">
+        <div className="hidden lg:flex flex-col items-start gap-1 max-w-md pt-1 text-left text-white/90">
           <p className="font-sans text-xs sm:text-[13px] leading-relaxed text-white">
             <span className="font-mono uppercase font-bold tracking-wider mr-1 text-red-500">&gt; yoo read this:</span>{' '}
             Windows will show a security warning when downloading cuz I haven&apos;t paid to verify the app with Microsoft yet (~$600). Just click <strong className="text-white font-semibold">&ldquo;More info&rdquo; &rarr; &ldquo;Run anyway&rdquo;</strong> ;)
           </p>
         </div>
       )}
+
+      {/* Mobile-only notice */}
+      <div className="flex lg:hidden flex-col items-start gap-1 max-w-md pt-1 text-left text-white/90">
+        <p className="font-mono text-xs sm:text-[13px] leading-relaxed text-white">
+          <span className="font-mono uppercase font-bold tracking-wider mr-1 text-red-500">&gt; yooo its for desktop</span>{' '}
+          sorry I haven’t build mobile version. Can u forgive me? 👉🏽👈🏽
+        </p>
+      </div>
     </div>
   );
 }

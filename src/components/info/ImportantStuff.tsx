@@ -67,7 +67,7 @@ export function ImportantStuff() {
       <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none select-none">
         <div
           ref={bgRef}
-          className="absolute -top-[20%] -bottom-[20%] left-0 right-0 w-full h-[140%] will-change-transform opacity-30"
+          className="absolute -top-[20%] -bottom-[20%] left-0 right-0 w-full h-[140%] will-change-transform opacity-65 lg:opacity-30"
           style={{
             transform: 'translate3d(0, 0, 0) scale(1.08)',
             backfaceVisibility: 'hidden',
@@ -87,7 +87,7 @@ export function ImportantStuff() {
 
         {/* Obsidian Vignettes & Edge Shadow Gradients */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#000000] via-transparent to-[#000000] opacity-90" />
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/25 lg:bg-black/60" />
         
         {/* Fine 35mm Analog Film Grain Texture Overlay */}
         <div

@@ -1,30 +1,128 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { Volume2, VolumeX, Play, Pause, Film } from 'lucide-react';
+import { useState, useRef, useEffect, useCallback } from 'react';
+import { Play, Pause, Volume2, VolumeX, RotateCcw, RotateCw } from 'lucide-react';
 import { HeroDownloadControls } from './HeroDownloadControls';
 import Image from 'next/image';
 
-interface HeroProps {
-  videoSrc?: string;
-  captionsSrc?: string;
-}
-
-export function Hero({ videoSrc, captionsSrc }: HeroProps) {
+export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const currentTimeRef = useRef<number>(0);
+
   const [hasEntered, setHasEntered] = useState(false);
-  
-  // Video controls
-  const [duration, setDuration] = useState<string | null>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-  const hasVideo = Boolean(videoSrc);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [origin, setOrigin] = useState('');
 
   const bgRef = useRef<HTMLDivElement>(null);
   const h1Ref = useRef<HTMLHeadingElement>(null);
+  const mobileH1Ref = useRef<HTMLHeadingElement>(null);
   const videoCardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setOrigin(window.location.origin);
+    }
+  }, []);
+
+  const sendCommand = useCallback((func: string, args: (string | number | boolean)[] = []) => {
+    if (!iframeRef.current?.contentWindow) return;
+    iframeRef.current.contentWindow.postMessage(
+      JSON.stringify({ event: 'command', func, args }),
+      '*'
+    );
+  }, []);
+
+  const disableCaptions = useCallback(() => {
+    sendCommand('unloadModule', ['captions']);
+    sendCommand('unloadModule', ['cc']);
+    sendCommand('setOption', ['captions', 'track', {}]);
+    sendCommand('setOption', ['cc', 'track', {}]);
+    sendCommand('setOption', ['captions', 'reload', false]);
+  }, [sendCommand]);
+
+  const togglePlay = () => {
+    if (isPlaying) {
+      sendCommand('pauseVideo');
+      setIsPlaying(false);
+    } else {
+      sendCommand('playVideo');
+      disableCaptions();
+      setIsPlaying(true);
+    }
+  };
+
+  const seekBy = (deltaSeconds: number) => {
+    const targetSeconds = Math.max(0, currentTimeRef.current + deltaSeconds);
+    sendCommand('seekTo', [targetSeconds, true]);
+    currentTimeRef.current = targetSeconds;
+  };
+
+  const toggleMute = () => {
+    if (isMuted) {
+      sendCommand('unMute');
+      sendCommand('setVolume', [100]);
+      setIsMuted(false);
+    } else {
+      sendCommand('mute');
+      setIsMuted(true);
+    }
+  };
+
+  // YouTube player listening handshake and telemetry message listener
+  useEffect(() => {
+    let initialConfigApplied = false;
+
+    const sendHandshake = () => {
+      if (iframeRef.current?.contentWindow) {
+        iframeRef.current.contentWindow.postMessage(
+          JSON.stringify({ event: 'listening' }),
+          '*'
+        );
+      }
+    };
+
+    sendHandshake();
+    const handshakeInterval = setInterval(sendHandshake, 1000);
+
+    const handleMessage = (event: MessageEvent) => {
+      if (!event.data) return;
+      let data = event.data;
+      if (typeof data === 'string') {
+        try {
+          data = JSON.parse(data);
+        } catch {
+          return;
+        }
+      }
+
+      // Once player is ready or starts delivering telemetry, request highest quality and unload YouTube captions
+      if (data?.event === 'onReady' || data?.event === 'infoDelivery') {
+        if (!initialConfigApplied) {
+          initialConfigApplied = true;
+          sendCommand('setPlaybackQuality', ['highres']);
+        }
+        disableCaptions();
+      }
+
+      if (data?.event === 'infoDelivery' && data?.info) {
+        if (typeof data.info.currentTime === 'number') {
+          currentTimeRef.current = data.info.currentTime;
+        }
+        if (typeof data.info.playerState === 'number') {
+          if (data.info.playerState === 1) setIsPlaying(true);
+          if (data.info.playerState === 2) setIsPlaying(false);
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => {
+      clearInterval(handshakeInterval);
+      window.removeEventListener('message', handleMessage);
+    };
+  }, [sendCommand, disableCaptions]);
 
   // One-shot IntersectionObserver: fade in when section enters viewport
   useEffect(() => {
@@ -49,6 +147,7 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
     let rafId: number;
     let targetForegroundY = 0;
     let currentForegroundY = 0;
+    let mobileHeadlineY = 0;
 
     const computeTarget = () => {
       const scrollY = window.scrollY;
@@ -56,6 +155,7 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
       // When scrolling down past hero (0 to 100vh), float foreground up at 38% parallax speed
       if (scrollY <= windowHeight * 1.5) {
         targetForegroundY = -(scrollY * 0.38);
+        mobileHeadlineY = -(scrollY * 0.50);
       }
     };
 
@@ -65,6 +165,9 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
       
       if (h1Ref.current) {
         h1Ref.current.style.transform = transformValue;
+      }
+      if (mobileH1Ref.current) {
+        mobileH1Ref.current.style.transform = `translate3d(0, ${mobileHeadlineY.toFixed(2)}px, 0)`;
       }
       if (videoCardRef.current) {
         videoCardRef.current.style.transform = transformValue;
@@ -85,36 +188,6 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
     };
   }, []);
 
-  const handleLoadedMetadata = () => {
-    if (videoRef.current && !isNaN(videoRef.current.duration)) {
-      const totalSeconds = Math.floor(videoRef.current.duration);
-      const minutes = Math.floor(totalSeconds / 60);
-      const seconds = totalSeconds % 60;
-      if (minutes > 0) {
-        setDuration(`${minutes}:${seconds.toString().padStart(2, '0')}`);
-      } else {
-        setDuration(`${seconds}s`);
-      }
-    }
-  };
-
-  const togglePlay = () => {
-    if (!videoRef.current) return;
-    if (videoRef.current.paused) {
-      videoRef.current.play();
-      setIsPlaying(true);
-    } else {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  const toggleMute = () => {
-    if (!videoRef.current) return;
-    videoRef.current.muted = !videoRef.current.muted;
-    setIsMuted(videoRef.current.muted);
-  };
-
   // We use `isolate` on the parent <section> combined with natural DOM order instead of
   // negative/scattered z-index values (`-z-10`, `z-10`). This creates a single unified stacking
   // context so CSS `mix-blend-mode: difference` can accurately blend against the parallax image canvas.
@@ -122,7 +195,7 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
     <section
       ref={sectionRef}
       id="hero"
-      className="cursor-target-zone relative lg:sticky top-0 z-0 w-full min-h-[100dvh] h-auto lg:h-screen lg:min-h-[700px] pl-6 sm:pl-8 lg:pl-10 pr-6 sm:pr-8 pt-10 pb-10 lg:pt-8 lg:pb-6 lg:sm:pb-8 flex flex-col justify-start lg:justify-end bg-transparent overflow-visible lg:overflow-hidden select-none"
+      className="cursor-target-zone sticky top-0 z-0 w-full h-[100dvh] lg:h-screen lg:min-h-[700px] pl-6 sm:pl-8 lg:pl-10 pr-6 sm:pr-8 pt-10 pb-10 lg:pt-8 lg:pb-6 lg:sm:pb-8 flex flex-col justify-start lg:justify-end bg-transparent overflow-visible lg:overflow-hidden select-none"
     >
       {/* 1. Full-Cover Parallax Background Canvas */}
       <div
@@ -165,8 +238,9 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
         </div>
 
         {/* MOBILE ONLY: headline, shown first */}
-        <div className="lg:hidden order-1 w-full text-left pointer-events-none">
+        <div className="lg:hidden order-1 w-full text-left pointer-events-none pt-8">
           <h1
+            ref={mobileH1Ref}
             className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mix-blend-difference leading-[0.96] text-left"
           >
             Prosthetic brain for ADHD<br />
@@ -179,81 +253,60 @@ export function Hero({ videoSrc, captionsSrc }: HeroProps) {
           ref={videoCardRef}
           className="order-2 lg:order-none relative lg:self-center w-full max-w-[280px] sm:max-w-[320px] mx-auto lg:mx-0 lg:w-auto lg:max-w-none h-auto lg:h-[86vh] lg:max-h-[820px] lg:min-h-[540px] aspect-[9/16] rounded-[30px] overflow-hidden shadow-[0_35px_80px_rgba(0,0,0,0.55)] border border-black/20 bg-black/60 backdrop-blur-xl shrink-0 mr-auto lg:mr-52 xl:mr-64 my-2 lg:my-auto"
         >
-          {hasVideo && videoSrc ? (
-            <video
-              ref={videoRef}
-              src={videoSrc}
-              autoPlay
-              loop
-              muted={isMuted}
-              playsInline
-              onLoadedMetadata={handleLoadedMetadata}
-              className="w-full h-full object-cover"
+          <iframe
+            ref={iframeRef}
+            src={`https://www.youtube-nocookie.com/embed/rLS6HowwDwo?autoplay=0&loop=1&playlist=rLS6HowwDwo&controls=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&cc_load_policy=0&cc_lang_pref=none&enablejsapi=1${origin ? `&origin=${encodeURIComponent(origin)}` : ''}`}
+            title="Backbone Hero Video"
+            className="w-full h-full border-0"
+            allow="autoplay; encrypted-media"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
+
+          <div className="absolute bottom-4 sm:bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 sm:gap-2">
+            {/* 1. Seek backward 5 seconds */}
+            <button
+              type="button"
+              onClick={() => seekBy(-5)}
+              className="p-2.5 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-md border border-white/15 text-white transition-colors cursor-pointer"
+              aria-label="Rewind 5 seconds"
+              title="Rewind 5 seconds"
             >
-              {captionsSrc && (
-                <track
-                  kind="subtitles"
-                  src={captionsSrc}
-                  srcLang="en"
-                  label="English"
-                  default
-                />
-              )}
-            </video>
-          ) : (
-            <div className="relative w-full h-full flex flex-col items-center justify-between p-6 sm:p-8 text-center">
-              <div className="w-full flex items-center justify-between">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] text-zinc-200">
-                  <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                  <span>{duration ? `${duration} Vertical Pitch` : '30s Vertical Pitch'}</span>
-                </div>
-              </div>
-              <div className="flex flex-col items-center gap-3.5 my-auto">
-                <div className="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-white shadow-2xl">
-                  <Film className="w-7 h-7" />
-                </div>
-                <div>
-                  <p className="text-base font-semibold text-white tracking-tight">
-                    Maximiliano&apos;s Objections Video
-                  </p>
-                  <p className="text-xs text-zinc-400 mt-1.5 max-w-[220px]">
-                    Vertical (9:16) video answering your core objections.
-                  </p>
-                </div>
-              </div>
-              <div className="w-full pt-3 border-t border-white/10 text-[10px] text-zinc-400 font-mono text-center">
-                9:16 VERTICAL FORMAT
-              </div>
-            </div>
-          )}
+              <RotateCcw className="w-4 h-4" />
+            </button>
 
-          {hasVideo && (
-            <div className="absolute top-4 left-4 z-20 pointer-events-none">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/15 text-[11px] text-zinc-200 font-mono">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                <span>{duration ? `${duration} Pitch` : 'Video Pitch'}</span>
-              </div>
-            </div>
-          )}
+            {/* 2. Play / Pause */}
+            <button
+              type="button"
+              onClick={togglePlay}
+              className="p-2.5 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-md border border-white/15 text-white transition-colors cursor-pointer"
+              aria-label={isPlaying ? 'Pause video' : 'Play video'}
+              title={isPlaying ? 'Pause' : 'Play'}
+            >
+              {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+            </button>
 
-          {hasVideo && (
-            <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
-              <button
-                onClick={togglePlay}
-                className="p-2.5 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-md border border-white/15 text-white transition-colors cursor-pointer"
-                aria-label={isPlaying ? 'Pause video' : 'Play video'}
-              >
-                {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-              </button>
-              <button
-                onClick={toggleMute}
-                className="p-2.5 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-md border border-white/15 text-white transition-colors cursor-pointer"
-                aria-label={isMuted ? 'Unmute video' : 'Mute video'}
-              >
-                {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-              </button>
-            </div>
-          )}
+            {/* 3. Seek forward 5 seconds */}
+            <button
+              type="button"
+              onClick={() => seekBy(5)}
+              className="p-2.5 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-md border border-white/15 text-white transition-colors cursor-pointer"
+              aria-label="Forward 5 seconds"
+              title="Forward 5 seconds"
+            >
+              <RotateCw className="w-4 h-4" />
+            </button>
+
+            {/* 4. Mute / Unmute */}
+            <button
+              type="button"
+              onClick={toggleMute}
+              className="p-2.5 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-md border border-white/15 text-white transition-colors cursor-pointer"
+              aria-label={isMuted ? 'Unmute video' : 'Mute video'}
+              title={isMuted ? 'Unmute' : 'Mute'}
+            >
+              {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+            </button>
+          </div>
         </div>
 
         {/* MOBILE ONLY: downloads, shown last */}

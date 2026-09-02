@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Lexend, Caveat } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 import { PostHogProvider } from '@/components/providers/PostHogProvider';
@@ -7,14 +6,14 @@ import { TargetCursor } from '@/components/animations/TargetCursor';
 import { LineSidebar } from '@/components/navigation/LineSidebar';
 import { BackgroundTransitionsProvider } from '@/components/animations/BackgroundTransitions';
 
-const lexend = Lexend({
-  subsets: ['latin'],
+const lexend = localFont({
+  src: '../../public/fonts/Lexend-Variable.woff2',
   variable: '--font-lexend',
   display: 'swap',
 });
 
-const caveat = Caveat({
-  subsets: ['latin'],
+const caveat = localFont({
+  src: '../../public/fonts/Caveat-Variable.woff2',
   variable: '--font-caveat',
   display: 'swap',
 });

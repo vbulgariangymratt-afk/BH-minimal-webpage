@@ -61,8 +61,9 @@ export function ConceptualStatement() {
 
       // 1. Direct GPU transform on the heavy 170vh background atmosphere image
       if (atmosphereRef.current) {
+        const translateX = -8;
         const translateY = -(currentProgress * 70);
-        atmosphereRef.current.style.transform = `translate3d(0, ${translateY.toFixed(3)}vh, 0)`;
+        atmosphereRef.current.style.transform = `translate3d(${translateX}vw, ${translateY.toFixed(3)}vh, 0)`;
       }
 
       // 2. Smoothly update text decrypting progress when changed

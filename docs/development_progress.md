@@ -16,6 +16,8 @@
 
 ### Completed
 
+- **Self-Hosted Variable Fonts (`Lexend` & `Caveat`)**: Added official local WOFF2 variable font assets in `public/fonts/` and configured `localFont` + `@font-face` in `src/app/layout.tsx` and `src/app/globals.css`, eliminating external Google CDN dependencies and Arial fallbacks.
+- **YouTube Hero Video Integration & Custom Controls (`src/components/hero/Hero.tsx`)**: Embedded the YouTube Hero video (`rLS6HowwDwo`) using native browser `postMessage` protocol with high-resolution preference, automated YouTube caption track unloading, and a bottom-centered custom glass control cluster (`Rewind 5s`, `Play/Pause`, `Forward 5s`, `Mute/Unmute`) that preserves direct native play/audio activation.
 - Initialized Next.js (App Router), TypeScript, and Tailwind CSS stack with Lexend typography.
 - **Obsidian Black Color Theme**: Replaced navy blue tones across `src/data/palettes.ts` and `src/app/globals.css` with pure Obsidian Void Black (`#040406` / `#000000`).
 - **Problems Section Background Filmstrip**: Integrated 4-artwork horizontal parallax background carousel (`image 1.webp` through `image 4.webp`) in `src/components/problems/Problems.tsx` & `src/data/problems.ts` with independent horizontal translation and `#040406` vignette fading.

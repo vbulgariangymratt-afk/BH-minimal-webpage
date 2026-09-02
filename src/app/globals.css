@@ -1,4 +1,20 @@
 @font-face {
+  font-family: 'Lexend';
+  src: url('/fonts/Lexend-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Caveat';
+  src: url('/fonts/Caveat-Variable.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'Rock Salt';
   src: url('/fonts/RockSalt-Regular.woff2') format('woff2');
   font-weight: 400;

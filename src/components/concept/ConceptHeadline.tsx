@@ -68,9 +68,14 @@ export function ConceptHeadline({ scrollProgress, className = '' }: ConceptHeadl
   let charCounter = 0;
 
   return (
-    <div className={`w-full max-w-[90vw] sm:max-w-[70vw] md:max-w-[60vw] lg:max-w-[52vw] xl:max-w-[48vw] flex flex-col gap-4 sm:gap-6 pt-8 sm:pt-14 lg:pt-20 ${className}`}>
+    <div className={`relative w-full max-w-[90vw] sm:max-w-[70vw] md:max-w-[60vw] lg:max-w-[52vw] xl:max-w-[48vw] flex flex-col gap-4 sm:gap-6 pt-8 sm:pt-14 lg:pt-20 ${className}`}>
+      <div
+        className="absolute left-[-1.5rem] right-[5%] top-[4.5rem] bottom-[-1rem] pointer-events-none rounded-[40%] bg-black/[0.32] blur-3xl"
+        aria-hidden="true"
+      />
+
       {/* Subtle Tag / Status Indicator with Fixed Clean Color */}
-      <div className="flex items-center gap-3">
+      <div className="relative z-10 flex items-center gap-3">
         <span className="inline-block w-2 h-2 rounded-full bg-red-500 animate-ping" />
         <span className="font-mono text-xs uppercase tracking-widest text-zinc-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
           [ 03 // THE DEAL &bull; {Math.round(scrollProgress * 100)}% ]
@@ -78,7 +83,7 @@ export function ConceptHeadline({ scrollProgress, className = '' }: ConceptHeadl
       </div>
 
       {/* Multilingual Decrypting Headline with Explicit Word Spacing & Live Color Inversion */}
-      <div className="font-display font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl tracking-tight leading-[1.12] uppercase text-white mix-blend-difference flex flex-col gap-2 sm:gap-3">
+      <div className="relative z-10 font-display font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl tracking-tight leading-[1.12] uppercase text-white mix-blend-difference flex flex-col gap-2 sm:gap-3">
         {STATEMENT_LINES.map((line, lineIdx) => {
           const words = line.split(' ');
           return (
@@ -106,7 +111,7 @@ export function ConceptHeadline({ scrollProgress, className = '' }: ConceptHeadl
       </div>
 
       {/* Micro Sub-copy with Fixed Clean Color */}
-      <p className="font-mono text-xs sm:text-sm text-zinc-300 max-w-md mt-2 leading-relaxed opacity-90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+      <p className="relative z-10 font-mono text-xs sm:text-sm text-zinc-300 max-w-md mt-2 leading-relaxed opacity-90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
         I like eating a lot, go to restaurants and shit, yk?
       </p>
     </div>
