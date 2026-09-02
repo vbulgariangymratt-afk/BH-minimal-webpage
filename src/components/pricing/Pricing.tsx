@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { openPaddleCheckout } from '@/integrations/paddle';
 import { captureEvent } from '@/integrations/posthog';
 import { PRICING_PLAN } from '@/data/pricing';
@@ -70,10 +71,20 @@ export function Pricing() {
             </p>
           </div>
 
-          {/* Purchase Flow Note */}
-          <div className="w-full mt-6 pt-5 border-t border-white/5 text-center">
+          {/* Purchase Flow Note & Legal Links */}
+          <div className="w-full mt-6 pt-5 border-t border-white/5 text-center space-y-2">
             <p className="text-xs text-zinc-400 leading-relaxed">
               {PRICING_PLAN.purchaseNote}
+            </p>
+            <p className="text-[11px] text-zinc-500">
+              By purchasing, you agree to our{' '}
+              <Link href="/terms" className="text-zinc-400 hover:text-white underline underline-offset-2 transition-colors">
+                Terms
+              </Link>{' '}
+              and{' '}
+              <Link href="/refund" className="text-zinc-400 hover:text-white underline underline-offset-2 transition-colors">
+                14-Day Refund Policy
+              </Link>.
             </p>
           </div>
         </div>

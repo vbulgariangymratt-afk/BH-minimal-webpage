@@ -27,48 +27,99 @@ export default function TermsPage() {
         </div>
 
         <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
-          <h2 className="text-lg font-medium text-white">1. Ownership & License</h2>
+          <h2 className="text-lg font-medium text-white">1. Product Description, Ownership & License</h2>
           <p>
-            Backbone, including its software, object code, branding, and proprietary systems, is owned and maintained by Maximiliano Sors Garza.
+            Backbone is a downloadable desktop application and executive function compensation system designed for ADHD founders and entrepreneurs, available for macOS, Windows, and Linux. Backbone, including its object code, design, branding, and proprietary systems, is owned and maintained by Maximiliano Sors Garza.
           </p>
           <p>
-            Purchasing access grants you a limited, non-exclusive, non-transferable license to use Backbone for your personal and business productivity during your paid 30-day period. You may not copy, reverse-engineer, redistribute, resell, or commercially exploit Backbone or its proprietary materials without written permission.
+            Purchasing access grants you a non-exclusive, non-transferable license to install and use Backbone with unlimited features across all your personal or business devices during your paid 30-day access period.
           </p>
-        </section>
-
-        <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
-          <h2 className="text-lg font-medium text-white">2. Subscription & Access Period</h2>
-          <p>
-            Backbone is purchased as an intentional 30-day access period for $30 (or localized equivalent via Paddle).
-          </p>
-          <p>
-            <strong>No Automatic Renewal:</strong> Backbone will never automatically charge your payment method when your 30 days expire. You decide when and if you wish to purchase another access period.
+          <p className="text-xs text-zinc-400">
+            <strong>Acceptable Use:</strong> You agree not to: (a) copy, modify, distribute, resell, sublicense, or commercially exploit Backbone; (b) reverse engineer, decompile, or attempt to extract source code; (c) attempt to probe, scan, or breach system security; or (d) use Backbone for any unlawful purpose.
           </p>
         </section>
 
         <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
-          <h2 className="text-lg font-medium text-white">3. Service Availability & Limitations</h2>
+          <h2 className="text-lg font-medium text-white">2. Merchant of Record & Payment Processing</h2>
           <p>
-            While every effort is made to ensure Backbone operates smoothly and reliably, Backbone does not guarantee uninterrupted or error-free operation. Backbone relies on cloud infrastructure (such as Supabase) and local operating system permissions to perform its core functions.
+            Our order process is conducted by our online reseller Paddle.com. Paddle.com is the Merchant of Record for all our orders. Paddle provides all customer service inquiries and handles returns. Payment, billing, tax compliance, and transaction-level disputes are governed by{' '}
+            <a
+              href="https://www.paddle.com/legal/checkout-buyer-terms"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:underline font-medium"
+            >
+              Paddle&apos;s Checkout Buyer Terms
+            </a>.
           </p>
-          <p>
-            If a verified technical problem caused directly by Backbone renders the application unusable for you during a paid access period, you are eligible for a full refund for that period.
+          <p className="text-xs text-zinc-400">
+            When you purchase access to Backbone, your transaction is processed directly by Paddle.com (Paddle.com Market Ltd / Paddle Payments Ltd). Paddle is responsible for billing, issuing invoices and receipts with applicable sales taxes/VAT, and handling payment compliance. Charges on your credit card or bank statement will typically appear as <code className="bg-white/10 px-1.5 py-0.5 rounded text-zinc-200 font-mono">PADDLE.NET* BACKBONE</code>.
           </p>
         </section>
 
         <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
-          <h2 className="text-lg font-medium text-white">4. User Data & Responsibility</h2>
+          <h2 className="text-lg font-medium text-white">3. Access Period & No Automatic Renewals</h2>
           <p>
-            You are responsible for the data you enter, modify, or intentionally/accidentally delete within Backbone. While Backbone provides reliable storage, recovery of user-deleted items cannot be guaranteed.
+            Backbone is purchased as an intentional 30-day access period for $30 (or localized currency equivalent calculated by Paddle).
+          </p>
+          <p>
+            <strong>Zero Automatic Renewals:</strong> Backbone does not operate on recurring subscriptions. We will never automatically charge your card when your 30 days expire. You decide if and when you want to purchase another period.
           </p>
         </section>
 
         <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
-          <h2 className="text-lg font-medium text-white">5. Contact & Inquiries</h2>
+          <h2 className="text-lg font-medium text-white">4. Service Availability & Limitation of Liability</h2>
           <p>
-            For questions regarding these terms, contact Maximiliano directly via X/Twitter at <a href="https://x.com/vz_warhead" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">@vz_warhead</a>.
+            Backbone is provided on an &ldquo;AS IS&rdquo; and &ldquo;AS AVAILABLE&rdquo; basis without warranties of any kind, whether express or implied. While every effort is made to ensure smooth, bug-free operation, Backbone does not guarantee uninterrupted service.
+          </p>
+          <p>
+            To the maximum extent permitted by applicable law, in no event shall Maximiliano Sors Garza or Backbone be liable for any indirect, incidental, special, consequential, or punitive damages (including loss of data, profits, or productivity) arising from your use of or inability to use the software. In any case, maximum aggregate liability is strictly limited to the amount you actually paid for your most recent 30-day access period.
           </p>
         </section>
+
+        <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
+          <h2 className="text-lg font-medium text-white">5. User Data & Responsibility</h2>
+          <p>
+            You are responsible for the data you enter, modify, or delete within Backbone, as well as keeping your login credentials secure. While Backbone uses secure cloud database infrastructure, recovery of user-deleted records cannot be guaranteed.
+          </p>
+        </section>
+
+        <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
+          <h2 className="text-lg font-medium text-white">6. Governing Law</h2>
+          <p>
+            These Terms and any dispute arising from your use of Backbone shall be governed by and construed in accordance with applicable laws, without giving effect to any conflict of law principles.
+          </p>
+        </section>
+
+        <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
+          <h2 className="text-lg font-medium text-white">7. Contact & Support</h2>
+          <p>
+            For any questions regarding these Terms, licensing, or support, reach out to Maximiliano on X/Twitter at{' '}
+            <a href="https://x.com/vz_warhead" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline font-medium">
+              @vz_warhead
+            </a>{' '}
+            (preferred for fastest reply) or via email at{' '}
+            <a href="mailto:vbulgariangymratt@gmail.com" className="text-blue-400 hover:underline">
+              vbulgariangymratt@gmail.com
+            </a>.
+          </p>
+        </section>
+
+        {/* Footer cross-links */}
+        <div className="pt-10 border-t border-white/5 flex flex-wrap items-center justify-between text-xs text-zinc-500 gap-4">
+          <p>&copy; {new Date().getFullYear()} Maximiliano Sors Garza</p>
+          <div className="flex items-center gap-6">
+            <Link href="/privacy" className="hover:text-zinc-300 transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/refund" className="hover:text-zinc-300 transition-colors">
+              Refund Policy
+            </Link>
+            <Link href="/" className="text-zinc-400 hover:text-white transition-colors">
+              Backbone Home &rarr;
+            </Link>
+          </div>
+        </div>
       </div>
     </main>
   );

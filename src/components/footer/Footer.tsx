@@ -21,7 +21,7 @@ export function Footer() {
         </div>
 
         {/* Links: Legal & Support */}
-        <div className="flex flex-wrap items-center gap-6 sm:gap-8">
+        <div className="flex flex-wrap items-center gap-4 sm:gap-6">
           <Link
             href="/terms"
             className="hover:text-zinc-300 transition-colors p-1"
@@ -46,8 +46,15 @@ export function Footer() {
             rel="noopener noreferrer"
             className="text-zinc-400 hover:text-white transition-colors font-medium flex items-center gap-1.5 p-1"
           >
-            <span>Support on X:</span>
+            <span>X (fastest):</span>
             <span className="text-zinc-200">@vz_warhead</span>
+          </a>
+          <a
+            href="mailto:vbulgariangymratt@gmail.com"
+            className="text-zinc-400 hover:text-white transition-colors font-medium flex items-center gap-1.5 p-1"
+          >
+            <span>Email:</span>
+            <span className="text-zinc-200">vbulgariangymratt@gmail.com</span>
           </a>
         </div>
 
