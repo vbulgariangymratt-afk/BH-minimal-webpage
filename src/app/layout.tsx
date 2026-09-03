@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import { PostHogProvider } from '@/components/providers/PostHogProvider';
@@ -23,6 +23,13 @@ const unbounded = localFont({
   variable: '--font-unbounded',
   display: 'swap',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#040406',
+};
 
 export const metadata: Metadata = {
   title: 'Backbone — Prosthetic brain for ADHD founders & entrepreneurs',

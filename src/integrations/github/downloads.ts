@@ -20,7 +20,16 @@ export function detectUserOS(): SupportedOS {
   const platform = (navigator.platform || '').toLowerCase();
   const userAgent = navigator.userAgent.toLowerCase();
 
-  if (platform.includes('mac') || userAgent.includes('macintosh') || userAgent.includes('mac os x')) {
+  // Explicitly exclude iOS devices (iPhone, iPad, iPod) whose userAgent or platform contains "like Mac OS X" / "iPhone"
+  const isIOS =
+    userAgent.includes('iphone') ||
+    userAgent.includes('ipad') ||
+    userAgent.includes('ipod') ||
+    platform.includes('iphone') ||
+    platform.includes('ipad') ||
+    platform.includes('ipod');
+
+  if (!isIOS && (platform.includes('mac') || userAgent.includes('macintosh') || userAgent.includes('mac os x'))) {
     return 'mac';
   }
   if (platform.includes('win') || userAgent.includes('windows')) {
