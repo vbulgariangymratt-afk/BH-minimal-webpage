@@ -23,7 +23,6 @@ export function ConceptMedusa({ className = '' }: ConceptMedusaProps) {
         fill
         className="object-cover object-top-right"
         sizes="(max-width: 768px) 280px, 520px"
-        priority
       />
 
       {/* Shared 35mm Analog Film Grain */}

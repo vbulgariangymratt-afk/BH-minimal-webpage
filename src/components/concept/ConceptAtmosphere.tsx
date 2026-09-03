@@ -41,7 +41,6 @@ export const ConceptAtmosphere = forwardRef<HTMLDivElement, ConceptAtmospherePro
               fill
               className="object-cover object-top filter contrast-135 brightness-100 saturate-110"
               sizes="115vh"
-              priority
             />
           </div>
 
@@ -53,7 +52,6 @@ export const ConceptAtmosphere = forwardRef<HTMLDivElement, ConceptAtmospherePro
               fill
               className="object-cover object-top filter contrast-135 brightness-100 saturate-110"
               sizes="115vh"
-              priority
             />
           </div>
         </div>

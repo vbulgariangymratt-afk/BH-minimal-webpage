@@ -29,6 +29,12 @@ export function ProblemsDesktop() {
     let currentProgress = 0;
     let lastRenderedPercent = -1;
 
+    const startLoop = () => {
+      if (rafId === null) {
+        rafId = requestAnimationFrame(tick);
+      }
+    };
+
     const computeTarget = () => {
       if (!sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
@@ -43,11 +49,17 @@ export function ProblemsDesktop() {
       } else {
         targetProgress = 0;
       }
+      startLoop();
     };
 
     const tick = () => {
       // Smooth lerp smoothing to eliminate any micro-stutter
-      currentProgress += (targetProgress - currentProgress) * 0.18;
+      const delta = Math.abs(targetProgress - currentProgress);
+      if (delta < 0.0001) {
+        currentProgress = targetProgress;
+      } else {
+        currentProgress += (targetProgress - currentProgress) * 0.18;
+      }
 
       // 1. Foreground spline + problem statements track transform (covers all 5 cards)
       if (trackRef.current) {
@@ -71,19 +83,26 @@ export function ProblemsDesktop() {
         percentTextRef.current.textContent = `${currentPercent}%`;
       }
 
-      rafId = requestAnimationFrame(tick);
+      if (currentProgress !== targetProgress) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        rafId = null;
+      }
     };
 
     const handleScroll = () => computeTarget();
+    const handleResize = () => computeTarget();
 
     computeTarget();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    rafId = requestAnimationFrame(tick);
+    window.addEventListener('resize', handleResize, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
       if (rafId !== null) {
         cancelAnimationFrame(rafId);
+        rafId = null;
       }
     };
   }, []);

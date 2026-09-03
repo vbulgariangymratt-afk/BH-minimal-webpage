@@ -37,6 +37,12 @@ export function ConceptualStatement() {
     let currentProgress = 0;
     let lastRenderedProgress = -1;
 
+    const startLoop = () => {
+      if (rafId === null) {
+        rafId = requestAnimationFrame(tick);
+      }
+    };
+
     const computeTarget = () => {
       if (!sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
@@ -54,10 +60,16 @@ export function ConceptualStatement() {
       } else {
         targetProgress = 0;
       }
+      startLoop();
     };
 
     const tick = () => {
-      currentProgress += (targetProgress - currentProgress) * 0.18;
+      const delta = Math.abs(targetProgress - currentProgress);
+      if (delta < 0.0001) {
+        currentProgress = targetProgress;
+      } else {
+        currentProgress += (targetProgress - currentProgress) * 0.18;
+      }
 
       // 1. Direct GPU transform on the heavy 170vh background atmosphere image
       if (atmosphereRef.current) {
@@ -72,19 +84,26 @@ export function ConceptualStatement() {
         setScrollProgress(currentProgress);
       }
 
-      rafId = requestAnimationFrame(tick);
+      if (currentProgress !== targetProgress) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        rafId = null;
+      }
     };
 
     const handleScroll = () => computeTarget();
+    const handleResize = () => computeTarget();
 
     computeTarget();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    rafId = requestAnimationFrame(tick);
+    window.addEventListener('resize', handleResize, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
       if (rafId !== null) {
         cancelAnimationFrame(rafId);
+        rafId = null;
       }
     };
   }, []);

@@ -12,7 +12,6 @@ const config: Config = {
         sans: ['var(--font-lexend)', 'sans-serif'],
         display: ['var(--font-unbounded)', 'sans-serif'],
         handwriting: ['var(--font-rock-salt)', 'cursive'],
-        pen: ['var(--font-caveat)', 'cursive'],
       },
       colors: {
         background: '#0a0a0f',

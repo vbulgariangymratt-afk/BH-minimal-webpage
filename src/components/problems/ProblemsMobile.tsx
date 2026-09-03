@@ -31,6 +31,12 @@ export function ProblemsMobile() {
     let targetY = 0;
     let currentY = 0;
 
+    const startLoop = () => {
+      if (rafId === null) {
+        rafId = requestAnimationFrame(tick);
+      }
+    };
+
     const computeTarget = () => {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
@@ -47,26 +53,44 @@ export function ProblemsMobile() {
         // Centered travel around 0.5 (midpoint of section has 0 translation)
         targetY = (progress - 0.5) * maxTravel;
       }
+      startLoop();
     };
 
     const tick = () => {
-      currentY += (targetY - currentY) * 0.12;
+      const delta = Math.abs(targetY - currentY);
+      if (delta < 0.01) {
+        currentY = targetY;
+      } else {
+        currentY += (targetY - currentY) * 0.12;
+      }
+
       if (bgTrackRef.current) {
         bgTrackRef.current.style.transform = `translate3d(0, ${currentY.toFixed(2)}px, 0)`;
       }
-      rafId = requestAnimationFrame(tick);
+
+      if (currentY !== targetY) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        rafId = null;
+      }
     };
 
     const handleScroll = () => computeTarget();
+    const handleResize = () => computeTarget();
+
     computeTarget();
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    rafId = requestAnimationFrame(tick);
+    window.addEventListener('resize', handleResize, { passive: true });
+    window.addEventListener('orientationchange', handleResize, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
       if (rafId !== null) {
         cancelAnimationFrame(rafId);
+        rafId = null;
       }
     };
   }, []);

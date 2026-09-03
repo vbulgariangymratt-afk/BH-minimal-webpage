@@ -34,7 +34,7 @@ export const ProblemsBackground = forwardRef<HTMLDivElement, ProblemsBackgroundP
                 src={src}
                 alt={`Background Artifact ${idx + 1}`}
                 className="h-full w-auto object-cover max-w-none filter contrast-110 brightness-105"
-                loading="eager"
+                loading="lazy"
                 onError={(e) => {
                   const parent = (e.target as HTMLElement).parentElement;
                   if (parent) parent.style.display = 'none';

@@ -150,10 +150,16 @@ export function Hero() {
 
   // Optical parallax calculation: Headline and video card float upward smoothly via RAF lerp while background stays static
   useEffect(() => {
-    let rafId: number;
+    let rafId: number | null = null;
     let targetForegroundY = 0;
     let currentForegroundY = 0;
     let mobileHeadlineY = 0;
+
+    const startLoop = () => {
+      if (rafId === null) {
+        rafId = requestAnimationFrame(tick);
+      }
+    };
 
     const computeTarget = () => {
       const scrollY = window.scrollY;
@@ -163,10 +169,17 @@ export function Hero() {
         targetForegroundY = -(scrollY * 0.38);
         mobileHeadlineY = -(scrollY * 0.50);
       }
+      startLoop();
     };
 
     const tick = () => {
-      currentForegroundY += (targetForegroundY - currentForegroundY) * 0.18;
+      const delta = Math.abs(targetForegroundY - currentForegroundY);
+      if (delta < 0.01) {
+        currentForegroundY = targetForegroundY;
+      } else {
+        currentForegroundY += (targetForegroundY - currentForegroundY) * 0.18;
+      }
+
       const transformValue = `translate3d(0, ${currentForegroundY.toFixed(2)}px, 0)`;
       
       if (h1Ref.current) {
@@ -179,18 +192,27 @@ export function Hero() {
         videoCardRef.current.style.transform = transformValue;
       }
       
-      rafId = requestAnimationFrame(tick);
+      if (currentForegroundY !== targetForegroundY) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        rafId = null;
+      }
     };
 
     const handleScroll = () => computeTarget();
+    const handleResize = () => computeTarget();
 
     computeTarget();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    rafId = requestAnimationFrame(tick);
+    window.addEventListener('resize', handleResize, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      cancelAnimationFrame(rafId);
+      window.removeEventListener('resize', handleResize);
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
     };
   }, []);
 

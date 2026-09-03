@@ -2,9 +2,8 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import { PostHogProvider } from '@/components/providers/PostHogProvider';
-import { TargetCursor } from '@/components/animations/TargetCursor';
+import { DynamicTargetCursor } from '@/components/animations/DynamicTargetCursor';
 import { LineSidebar } from '@/components/navigation/LineSidebar';
-import { BackgroundTransitionsProvider } from '@/components/animations/BackgroundTransitions';
 
 const lexend = localFont({
   src: '../../public/fonts/Lexend-Variable.woff2',
@@ -12,11 +11,6 @@ const lexend = localFont({
   display: 'swap',
 });
 
-const caveat = localFont({
-  src: '../../public/fonts/Caveat-Variable.woff2',
-  variable: '--font-caveat',
-  display: 'swap',
-});
 
 const rockSalt = localFont({
   src: '../../public/fonts/RockSalt-Regular.woff2',
@@ -58,26 +52,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${lexend.variable} ${rockSalt.variable} ${unbounded.variable} ${caveat.variable}`}>
+    <html lang="en" className={`${lexend.variable} ${rockSalt.variable} ${unbounded.variable}`}>
       <body className="text-[#e8e8f0] font-sans antialiased selection:bg-white/20 selection:text-white bg-transparent">
         <PostHogProvider>
-          <BackgroundTransitionsProvider>
-            {children}
-            
-            {/* Fixed Right Line Sidebar Navigation (No transform on parent so mix-blend-difference blends directly against document) */}
-            <div className="fixed right-5 sm:right-8 top-[36vh] z-50 hidden md:block pointer-events-auto mix-blend-difference">
-              <LineSidebar align="right" />
-            </div>
+          {children}
+          
+          {/* Fixed Right Line Sidebar Navigation (No transform on parent so mix-blend-difference blends directly against document) */}
+          <div className="fixed right-5 sm:right-8 top-[36vh] z-50 hidden md:block pointer-events-auto mix-blend-difference">
+            <LineSidebar align="right" />
+          </div>
 
-            <TargetCursor
-              zoneSelector=".cursor-target-zone"
-              targetSelector=".cursor-target"
-              spinDuration={2.5}
-              hoverDuration={0.2}
-              parallaxOn={true}
-              cursorColor="#ffffff"
-            />
-          </BackgroundTransitionsProvider>
+          <DynamicTargetCursor
+            zoneSelector=".cursor-target-zone"
+            targetSelector=".cursor-target"
+            spinDuration={2.5}
+            hoverDuration={0.2}
+            parallaxOn={true}
+            cursorColor="#ffffff"
+          />
         </PostHogProvider>
       </body>
     </html>

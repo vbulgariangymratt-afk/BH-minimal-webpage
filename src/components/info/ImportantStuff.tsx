@@ -17,12 +17,16 @@ export function ImportantStuff() {
   const [isExpanded, setIsExpanded] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
-  const rafIdRef = useRef<number | null>(null);
-
   useEffect(() => {
     let rafId: number | null = null;
     let targetParallaxY = 0;
     let currentParallaxY = 0;
+
+    const startLoop = () => {
+      if (rafId === null) {
+        rafId = requestAnimationFrame(tick);
+      }
+    };
 
     const computeTarget = () => {
       if (!sectionRef.current) return;
@@ -30,26 +34,41 @@ export function ImportantStuff() {
       const windowHeight = window.innerHeight;
       const centerOffset = rect.top - (windowHeight / 2);
       targetParallaxY = centerOffset * 0.18;
+      startLoop();
     };
 
     const tick = () => {
-      currentParallaxY += (targetParallaxY - currentParallaxY) * 0.18;
+      const delta = Math.abs(targetParallaxY - currentParallaxY);
+      if (delta < 0.01) {
+        currentParallaxY = targetParallaxY;
+      } else {
+        currentParallaxY += (targetParallaxY - currentParallaxY) * 0.18;
+      }
+
       if (bgRef.current) {
         bgRef.current.style.transform = `translate3d(0, ${currentParallaxY.toFixed(2)}px, 0) scale(1.08)`;
       }
-      rafId = requestAnimationFrame(tick);
+
+      if (currentParallaxY !== targetParallaxY) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        rafId = null;
+      }
     };
 
     const handleScroll = () => computeTarget();
+    const handleResize = () => computeTarget();
 
     computeTarget();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    rafId = requestAnimationFrame(tick);
+    window.addEventListener('resize', handleResize, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
       if (rafId !== null) {
         cancelAnimationFrame(rafId);
+        rafId = null;
       }
     };
   }, []);
