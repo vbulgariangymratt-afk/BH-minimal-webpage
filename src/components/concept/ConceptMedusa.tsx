@@ -18,7 +18,7 @@ export function ConceptMedusa({ className = '' }: ConceptMedusaProps) {
       className={`absolute right-0 top-0 pointer-events-none select-none w-[280px] sm:w-[360px] md:w-[440px] lg:w-[520px] aspect-[2/3] max-h-[82vh] ${className}`}
     >
       <Image
-        src="/images/Broken.webp"
+        src="/images/broken-optimized.webp"
         alt="Broken Medusa marble sculpture"
         fill
         className="object-cover object-top-right"

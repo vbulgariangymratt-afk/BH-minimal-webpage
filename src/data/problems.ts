@@ -45,8 +45,8 @@ export const KINETIC_PROBLEMS: ProblemStatementItem[] = [
 ];
 
 export const PROBLEM_BACKGROUND_IMAGES: string[] = [
-  '/images/problems/image 1.webp',
-  '/images/problems/image 2.webp',
-  '/images/problems/image 3.webp',
-  '/images/problems/image 4.webp',
+  '/images/problems/image-1-optimized.webp',
+  '/images/problems/image-2-optimized.webp',
+  '/images/problems/image-3-optimized.webp',
+  '/images/problems/image-4-optimized.webp',
 ];

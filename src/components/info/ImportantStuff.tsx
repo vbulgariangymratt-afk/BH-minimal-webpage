@@ -76,7 +76,7 @@ export function ImportantStuff() {
           {/* Mirrored Atmosphere Artwork */}
           <div className="relative w-full h-full flex items-center justify-center">
             <Image
-              src="/images/this one.webp"
+              src="/images/this one-optimized.webp"
               alt="Atmospheric Michelangelo background"
               fill
               className="object-cover object-center filter contrast-125 brightness-75 saturate-90"
@@ -196,7 +196,7 @@ export function ImportantStuff() {
             {/* Image Container */}
             <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden border border-white/[0.08] bg-black">
               <Image
-                src="/images/david-derp.jpg"
+                src="/images/david-derp-optimized.webp"
                 alt="David collage with crossed eyes and nose ring"
                 fill
                 className="object-cover object-center filter contrast-110 brightness-95 saturate-105"

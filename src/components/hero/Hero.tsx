@@ -5,6 +5,10 @@ import { Play, Pause, Volume2, VolumeX, RotateCcw, RotateCw } from 'lucide-react
 import { HeroDownloadControls } from './HeroDownloadControls';
 import Image from 'next/image';
 
+type YouTubeCommandArg = string | number | boolean | Record<string, unknown>;
+
+const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_URL || 'https://backbone.so';
+
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -13,20 +17,13 @@ export function Hero() {
   const [hasEntered, setHasEntered] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [origin, setOrigin] = useState('');
 
   const bgRef = useRef<HTMLDivElement>(null);
   const h1Ref = useRef<HTMLHeadingElement>(null);
   const mobileH1Ref = useRef<HTMLHeadingElement>(null);
   const videoCardRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setOrigin(window.location.origin);
-    }
-  }, []);
-
-  const sendCommand = useCallback((func: string, args: (string | number | boolean)[] = []) => {
+  const sendCommand = useCallback((func: string, args: YouTubeCommandArg[] = []) => {
     if (!iframeRef.current?.contentWindow) return;
     iframeRef.current.contentWindow.postMessage(
       JSON.stringify({ event: 'command', func, args }),
@@ -72,7 +69,15 @@ export function Hero() {
 
   // YouTube player listening handshake and telemetry message listener
   useEffect(() => {
+    let handshakeInterval: NodeJS.Timeout | null = null;
     let initialConfigApplied = false;
+
+    const clearHandshake = () => {
+      if (handshakeInterval !== null) {
+        clearInterval(handshakeInterval);
+        handshakeInterval = null;
+      }
+    };
 
     const sendHandshake = () => {
       if (iframeRef.current?.contentWindow) {
@@ -84,7 +89,7 @@ export function Hero() {
     };
 
     sendHandshake();
-    const handshakeInterval = setInterval(sendHandshake, 1000);
+    handshakeInterval = setInterval(sendHandshake, 1000);
 
     const handleMessage = (event: MessageEvent) => {
       if (!event.data) return;
@@ -97,8 +102,9 @@ export function Hero() {
         }
       }
 
-      // Once player is ready or starts delivering telemetry, request highest quality and unload YouTube captions
+      // Once player is ready or starts delivering telemetry, stop handshake, request highest quality and unload YouTube captions
       if (data?.event === 'onReady' || data?.event === 'infoDelivery') {
+        clearHandshake();
         if (!initialConfigApplied) {
           initialConfigApplied = true;
           sendCommand('setPlaybackQuality', ['highres']);
@@ -119,7 +125,7 @@ export function Hero() {
 
     window.addEventListener('message', handleMessage);
     return () => {
-      clearInterval(handshakeInterval);
+      clearHandshake();
       window.removeEventListener('message', handleMessage);
     };
   }, [sendCommand, disableCaptions]);
@@ -203,7 +209,7 @@ export function Hero() {
         className="absolute inset-0 w-full h-[106%] -top-[3%] pointer-events-none"
       >
         <Image
-          src="/images/Upscaled crosshands.png"
+          src="/images/crosshands-optimized.webp"
           alt="Atmospheric Background"
           fill
           sizes="100vw"
@@ -255,7 +261,7 @@ export function Hero() {
         >
           <iframe
             ref={iframeRef}
-            src={`https://www.youtube-nocookie.com/embed/rLS6HowwDwo?autoplay=0&loop=1&playlist=rLS6HowwDwo&controls=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&cc_load_policy=0&cc_lang_pref=none&enablejsapi=1${origin ? `&origin=${encodeURIComponent(origin)}` : ''}`}
+            src={`https://www.youtube-nocookie.com/embed/rLS6HowwDwo?autoplay=0&loop=1&playlist=rLS6HowwDwo&controls=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&cc_load_policy=0&cc_lang_pref=none&enablejsapi=1&origin=${encodeURIComponent(SITE_ORIGIN)}`}
             title="Backbone Hero Video"
             className="w-full h-full border-0"
             allow="autoplay; encrypted-media"

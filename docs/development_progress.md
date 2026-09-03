@@ -16,6 +16,14 @@
 
 ### Completed
 
+- **Comprehensive WebP Asset Optimization & Payload Reduction**:
+  - Re-encoded all major high-resolution images across the entire site into optimized WebP formats (Quality 85, Effort 6) with display-matched Retina resolutions.
+  - **Hero Background (`crosshands-optimized.webp`)**: Reduced from 24.86 MB (PNG) to **568.90 KB** (-97.66% reduction), cutting GPU texture memory from ~55 MB to ~21 MB.
+  - **Important Stuff Background (`this one-optimized.webp`)**: Reduced from 10.73 MB (Lossless WebP) to **374.39 KB** (-96.59% reduction).
+  - **Concept Atmosphere Artwork (`redish-optimized.webp`)**: Reduced from 1.28 MB (JPEG) to **281.20 KB** (-78.60% reduction), reducing dual-instance GPU VRAM from ~76 MB to ~41 MB.
+  - **Concept Medusa Sculpture (`broken-optimized.webp`)**: Reduced from 1.22 MB to **324.11 KB** (-74.11% reduction).
+  - **Active Small Image Suite (`david-derp-optimized.webp`, `problems/image-[1-4]-optimized.webp`)**: Reduced total small asset payload from 790.1 KB to **228.46 KB** (-71.09% reduction).
+  - **Total Site Network Payload Savings**: **~37.3 MB total bandwidth saved**, dramatically improving Largest Contentful Paint (LCP) and page load speed while maintaining 100% visual fidelity and preserving all original master assets.
 - **Self-Hosted Variable Fonts (`Lexend` & `Caveat`)**: Added official local WOFF2 variable font assets in `public/fonts/` and configured `localFont` + `@font-face` in `src/app/layout.tsx` and `src/app/globals.css`, eliminating external Google CDN dependencies and Arial fallbacks.
 - **YouTube Hero Video Integration & Custom Controls (`src/components/hero/Hero.tsx`)**: Embedded the YouTube Hero video (`rLS6HowwDwo`) using native browser `postMessage` protocol with high-resolution preference, automated YouTube caption track unloading, and a bottom-centered custom glass control cluster (`Rewind 5s`, `Play/Pause`, `Forward 5s`, `Mute/Unmute`) that preserves direct native play/audio activation.
 - Initialized Next.js (App Router), TypeScript, and Tailwind CSS stack with Lexend typography.

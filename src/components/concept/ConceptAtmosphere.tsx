@@ -16,7 +16,7 @@ interface ConceptAtmosphereProps {
  */
 export const ConceptAtmosphere = forwardRef<HTMLDivElement, ConceptAtmosphereProps>(
   function ConceptAtmosphere({
-    imageSrc = '/images/redish cropped again.jpeg',
+    imageSrc = '/images/redish-optimized.webp',
     className = '',
   }, ref) {
     if (!imageSrc) return null;

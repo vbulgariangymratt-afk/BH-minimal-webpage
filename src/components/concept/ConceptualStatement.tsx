@@ -101,7 +101,7 @@ export function ConceptualStatement() {
         {/* Layer 0: Mirrored Background Atmosphere Artwork with Smooth Vertical Parallax */}
         <ConceptAtmosphere
           ref={atmosphereRef}
-          imageSrc="/images/redish cropped again.jpeg"
+          imageSrc="/images/redish-optimized.webp"
         />
 
         {/* Layer 1: Top-Right Marble Medusa Sculpture */}
