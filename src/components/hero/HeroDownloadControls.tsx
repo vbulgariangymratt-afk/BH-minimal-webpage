@@ -32,14 +32,14 @@ export function HeroDownloadControls() {
   const isWindows = detectedOS === 'windows';
 
   return (
-    <div className="flex flex-col items-start gap-3 w-full text-white mix-blend-difference select-none">
+    <div className="relative z-10 flex flex-col items-start gap-3 w-full text-white select-none">
       {/* 2. Download Links (Code/Console Style with $ prefix) */}
-      <div className="flex items-center flex-wrap gap-x-4 gap-y-2 text-xs sm:text-sm font-mono lowercase tracking-wider text-white">
+      <div className="flex items-center flex-wrap gap-x-6 gap-y-3 text-sm sm:text-base md:text-lg font-mono lowercase tracking-wider text-white">
         <a
           href={GITHUB_DOWNLOADS.macOS}
           download
           onClick={() => handleDownloadClick('macOS')}
-          className="cursor-target group transition-opacity hover:opacity-80 flex items-center gap-1.5"
+          className="cursor-target group transition-opacity hover:opacity-80 flex items-center gap-2"
         >
           <span className="text-red-500 font-bold group-hover:translate-x-0.5 transition-transform">$</span>
           <span>
@@ -57,7 +57,7 @@ export function HeroDownloadControls() {
         <a
           href={GITHUB_DOWNLOADS.windows}
           onClick={() => handleDownloadClick('windows')}
-          className="cursor-target group transition-opacity hover:opacity-80 flex items-center gap-1.5"
+          className="cursor-target group transition-opacity hover:opacity-80 flex items-center gap-2"
         >
           <span className="text-red-500 font-bold group-hover:translate-x-0.5 transition-transform">$</span>
           <span>
@@ -77,9 +77,9 @@ export function HeroDownloadControls() {
       {isMac && (
         <div className="hidden lg:flex flex-col items-start gap-1.5 max-w-md pt-1 text-left text-white/90">
           {/* Explanatory sentence: Normal sans-serif body font */}
-          <p className="font-sans text-xs sm:text-[13px] leading-relaxed text-white">
+          <p className="font-sans text-xs sm:text-[13px] leading-relaxed text-neutral-300">
             <span className="font-mono uppercase font-bold tracking-wider mr-1 text-red-500">&gt; yoo read this:</span>{' '}
-            Drag <strong className="text-white font-semibold">Backbone Hierarchy</strong> into Applications first. If/when u get &ldquo;can&apos;t be opened&rdquo; (cuz I havent payed Apple to notarize this yet), open Terminal and paste this command:
+            Drag <strong className="text-neutral-100 font-semibold">Backbone Hierarchy</strong> into Applications first. If/when u get &ldquo;can&apos;t be opened&rdquo; (cuz I havent payed Apple to notarize this yet), open Terminal and paste this command:
           </p>
           {/* Terminal command line: Entire row is framed by target cursor & 1-click copyable */}
           <button
@@ -102,16 +102,16 @@ export function HeroDownloadControls() {
 
       {isWindows && (
         <div className="hidden lg:flex flex-col items-start gap-1 max-w-md pt-1 text-left text-white/90">
-          <p className="font-sans text-xs sm:text-[13px] leading-relaxed text-white">
+          <p className="font-sans text-xs sm:text-[13px] leading-relaxed text-neutral-300">
             <span className="font-mono uppercase font-bold tracking-wider mr-1 text-red-500">&gt; yoo read this:</span>{' '}
-            Windows will show a security warning when downloading cuz I haven&apos;t paid to verify the app with Microsoft yet (~$600). Just click <strong className="text-white font-semibold">&ldquo;More info&rdquo; &rarr; &ldquo;Run anyway&rdquo;</strong> ;)
+            Windows will show a security warning when downloading cuz I haven&apos;t paid to verify the app with Microsoft yet (~$600). Just click <strong className="text-neutral-100 font-semibold">&ldquo;More info&rdquo; &rarr; &ldquo;Run anyway&rdquo;</strong> ;)
           </p>
         </div>
       )}
 
       {/* Mobile-only notice */}
       <div className="flex lg:hidden flex-col items-start gap-1 max-w-md pt-1 text-left text-white/90">
-        <p className="font-mono text-xs sm:text-[13px] leading-relaxed text-white">
+        <p className="font-mono text-xs sm:text-[13px] leading-relaxed text-neutral-300">
           <span className="font-mono uppercase font-bold tracking-wider mr-1 text-red-500">&gt; yooo its for desktop</span>{' '}
           sorry I haven’t build mobile version. Can u forgive me? 👉🏽👈🏽
         </p>
