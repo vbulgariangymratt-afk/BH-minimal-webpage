@@ -43,7 +43,7 @@ export default function PrivacyPage() {
           </p>
           <ul className="list-disc pl-5 space-y-2 text-xs text-zinc-400">
             <li>
-              <strong>Account & Email Address:</strong> We collect your email address purely as your unique account identifier to verify your Paddle purchase, unlock your license, and sync your data across devices. <em>We will never send you promotional newsletters, marketing spam, or unsolicited emails.</em>
+              <strong>Account & Email Address:</strong> We collect your email address purely as your unique account identifier to verify your Lemon Squeezy purchase, unlock your license, and sync your data across devices. <em>We will never send you promotional newsletters, marketing spam, or unsolicited emails.</em>
             </li>
             <li>
               <strong>Application Data:</strong> Projects, hierarchical tasks, predicted vs. actual satisfaction ratings, sleep/wake times, and optional medication logs you enter into Backbone to run its executive function compensation system.
@@ -52,7 +52,7 @@ export default function PrivacyPage() {
               <strong>Technical & Telemetry Data (via PostHog):</strong> When you visit our website or use the application, standard diagnostic telemetry is automatically recorded—including your IP address, approximate geographical region (country/city), operating system (macOS/Windows/Linux), browser type, screen resolution, error/crash logs, and interaction events (such as download clicks and checkout initiation). This data is strictly used for debugging, app stability, and preventing abuse.
             </li>
             <li>
-              <strong>Payment Information:</strong> All transactions are processed directly by our Merchant of Record, Paddle. Backbone never collects, sees, or stores your credit card numbers, CVVs, or financial billing details.
+              <strong>Payment Information:</strong> All transactions are processed directly by our Merchant of Record, Lemon Squeezy. Backbone never collects, sees, or stores your credit card numbers, CVVs, or financial billing details.
             </li>
           </ul>
         </section>
@@ -71,14 +71,14 @@ export default function PrivacyPage() {
           </p>
           <ul className="list-disc pl-5 space-y-2 text-xs text-zinc-400">
             <li>
-              <strong>Paddle (Merchant of Record & Independent Data Controller):</strong> Our order and checkout process is conducted by our online reseller Paddle.com (Paddle.com Market Ltd / Paddle Payments Ltd). Paddle acts as the Merchant of Record and an independent data controller for buyer transaction data (such as billing address, country, tax ID, and payment instrument details) for order fulfillment, billing, invoicing, fraud detection, and global tax (VAT/GST/Sales Tax) compliance. Backbone never collects, sees, or stores your credit card numbers. All payment data is processed under the{' '}
+              <strong>Lemon Squeezy (Merchant of Record & Independent Data Controller):</strong> Our order and checkout process is conducted by our online reseller LemonSqueezy.com (Lemon Squeezy LLC). Lemon Squeezy acts as the Merchant of Record and an independent data controller for buyer transaction data (such as billing address, country, tax ID, and payment instrument details) for order fulfillment, billing, invoicing, fraud detection, and global tax (VAT/GST/Sales Tax) compliance. Backbone never collects, sees, or stores your credit card numbers. All payment data is processed under the{' '}
               <a
-                href="https://www.paddle.com/legal/privacy"
+                href="https://www.lemonsqueezy.com/privacy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-400 hover:underline font-medium"
               >
-                Paddle Privacy Policy
+                Lemon Squeezy Privacy Policy
               </a>.
             </li>
             <li>
@@ -98,7 +98,7 @@ export default function PrivacyPage() {
           <ul className="list-disc pl-5 space-y-1.5 text-xs text-zinc-400">
             <li><strong>Performance of a Contract:</strong> Processing your email and account information to provide software access, verify entitlements, and enable multi-device synchronization.</li>
             <li><strong>Legitimate Interests:</strong> Processing diagnostic telemetry and crash logs (via PostHog) to protect software integrity, resolve errors, and prevent malicious abuse.</li>
-            <li><strong>Legal Obligations:</strong> Compliance with statutory financial, legal, and tax reporting requirements handled in partnership with Paddle.</li>
+            <li><strong>Legal Obligations:</strong> Compliance with statutory financial, legal, and tax reporting requirements handled in partnership with Lemon Squeezy.</li>
           </ul>
         </section>
 

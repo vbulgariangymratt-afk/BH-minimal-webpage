@@ -40,28 +40,28 @@ export default function RefundPage() {
             <a href="mailto:vbulgariangymratt@gmail.com" className="text-blue-400 hover:underline">
               vbulgariangymratt@gmail.com
             </a>{' '}
-            with your Paddle purchase email or transaction order ID.
+            with your Lemon Squeezy purchase email or transaction order number.
           </p>
           <p className="text-xs text-zinc-400">
-            Alternatively, you can request a refund directly through the transaction receipt email issued to you by Paddle or via Paddle Buyer Support at{' '}
+            Alternatively, you can manage your order or request assistance directly through the transaction receipt email issued to you by Lemon Squeezy or via the Lemon Squeezy Customer Portal at{' '}
             <a
-              href="https://help.paddle.com"
+              href="https://app.lemonsqueezy.com/my-orders"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:underline"
+              className="text-blue-400 hover:underline font-medium"
             >
-              help.paddle.com
+              app.lemonsqueezy.com/my-orders
             </a>.
           </p>
           <p className="text-xs text-zinc-400">
-            Once a refund is approved, Paddle will issue the funds back to your original payment method (credit card, PayPal, etc.). Refunds typically reflect on your bank or card statement within <strong>3 to 5 business days</strong>. All purchases and refund processing are subject to{' '}
+            Once a refund is approved, Lemon Squeezy will issue the funds back to your original payment method (credit card, PayPal, etc.). Refunds typically reflect on your bank or card statement within <strong>3 to 5 business days</strong>. All purchases and refund processing are subject to{' '}
             <a
-              href="https://www.paddle.com/legal/checkout-buyer-terms"
+              href="https://www.lemonsqueezy.com/terms"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-400 hover:underline"
             >
-              Paddle&apos;s Checkout Buyer Terms
+              Lemon Squeezy&apos;s Terms of Service
             </a>.
           </p>
         </section>

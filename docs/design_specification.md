@@ -51,7 +51,7 @@
 
 **Payment flow:**
 
-The website does not handle the purchase flow. Users download the application first and complete their purchase from inside the Backbone application. Paddle handles payment processing, and the user's email is used to determine whether they are authorized to use the application.
+The website does not handle the purchase flow. Users download the application first and complete their purchase from inside the Backbone application. Lemon Squeezy handles payment processing, and the user's email is used to determine whether they are authorized to use the application.
 
 - 2.2 Stuff our brains can't do for us but Backbone solves
     
@@ -175,22 +175,22 @@ The website does not handle the purchase flow. Users download the application fi
     
     Users can download Backbone before purchasing.
     
-    The website should also provide a **Get Backbone / Purchase** CTA that launches the Paddle checkout.
+    The website should also provide a **Get Backbone / Purchase** CTA that launches the Lemon Squeezy checkout.
     
     The intended flow is:
     
-    **Website → Download Backbone → Open Backbone → Enter/use email → Purchase through Paddle → Payment confirmed → Backbone unlocks**
+    **Website → Download Backbone → Open Backbone → Enter/use email → Purchase through Lemon Squeezy → Payment confirmed → Backbone unlocks**
     
-    The email used for the Paddle purchase must match the email associated with the Backbone installation/account so the backend can determine whether that user is authorized.
+    The email used for the Lemon Squeezy purchase must match the email associated with the Backbone installation/account so the backend can determine whether that user is authorized.
     
-    After successful payment, Paddle's payment event should trigger the backend authorization process.
+    After successful payment, Lemon Squeezy's payment event should trigger the backend authorization process.
     
     The website should explain this flow briefly and clearly without adding unnecessary instructions.
     
     > Users can either:
     > 
     > - Download Backbone first and purchase from inside the app.
-    > - Purchase from the website through Paddle and then download the app.
+    > - Purchase from the website through Lemon Squeezy and then download the app.
     > 
     > Both paths should lead to the same authorization system.
     > 
@@ -316,7 +316,7 @@ The website does not handle the purchase flow. Users download the application fi
     **Storage / services currently used:**
     
     - Supabase — application/database infrastructure and data storage.
-    - Paddle — payment processing / Merchant of Record.
+    - Lemon Squeezy — payment processing / Merchant of Record.
     - PostHog — analytics.
     - OAuth — authentication.
     
@@ -657,40 +657,40 @@ The website does not handle the purchase flow. Users download the application fi
     
     **Important:** Do not replace the existing GitHub download mechanism with a new download system unless there is a specific technical reason to do so.
     
-- 5.3 Payments — paddle
+- 5.3 Payments — Lemon Squeezy
     
-    > **Payment provider:** Paddle
+    > **Payment provider:** Lemon Squeezy
     > 
     > 
-    > Paddle will be used to process Backbone purchases and handle payment-related functionality.
+    > Lemon Squeezy will be used to process Backbone purchases and handle payment-related functionality.
     > 
     > **Product/pricing:**
     > 
     > - One subscription/product.
-    > - Base price: **500 MXN**.
+    > - Base price: **500 MXN** (or $30 USD).
     > - Access period: **30 days**.
     > - No automatic renewal.
     > - There are no additional pricing tiers or features locked behind higher prices.
     > 
     > **Currency localization:**
     > 
-    > Backbone's base price is 500 MXN.
+    > Backbone's base price is 500 MXN / $30 USD.
     > 
-    > Paddle should handle currency localization for international customers where supported, rather than the website implementing its own exchange-rate calculations.
+    > Lemon Squeezy should handle currency localization for international customers where supported, rather than the website implementing its own exchange-rate calculations.
     > 
     > The website should not maintain or calculate exchange rates itself.
     > 
     > **Checkout:**
     > 
-    > The pricing section should contain a clear purchase CTA that opens Paddle Checkout.
+    > The pricing section should contain a clear purchase CTA that opens Lemon Squeezy Checkout.
     > 
-    > The final Paddle product/price IDs and checkout configuration will be added after the Paddle account has been created and configured.
+    > The final Lemon Squeezy product/price IDs and checkout configuration will be added after the Lemon Squeezy account has been created and configured.
     > 
     > **Access after payment:**
     > 
     > A successful payment must be communicated to Backbone's backend authorization system so the purchaser can be recognized as having an active 30-day access period.
     > 
-    > The purchaser should use the **same email address for Backbone that they used when purchasing through Paddle**.
+    > The purchaser should use the **same email address for Backbone that they used when purchasing through Lemon Squeezy**.
     > 
     > **Renewal:**
     > 
@@ -700,11 +700,11 @@ The website does not handle the purchase flow. Users download the application fi
     > 
     > **Security:**
     > 
-    > Paddle credentials, API keys, webhook secrets, and other private credentials must never be exposed in client-side code. They must be stored using appropriate secure environment variables/server-side configuration.
+    > Lemon Squeezy credentials, API keys, webhook secrets, and other private credentials must never be exposed in client-side code. They must be stored using appropriate secure environment variables/server-side configuration.
     > 
     > **Current status:**
     > 
-    > The Paddle account has not yet been created. Product IDs, price IDs, webhook configuration, credentials, and final checkout implementation will be configured later.
+    > The Lemon Squeezy account and checkout are configured. Product IDs, store URLs, webhook configuration, credentials, and final checkout implementation will be linked securely.
     > 
     > The architecture should therefore be designed so these values can be added without restructuring the website.
     > 
@@ -717,11 +717,11 @@ The website does not handle the purchase flow. Users download the application fi
     1. From the Backbone website.
     2. From within the Backbone application, which opens the payment checkout in the user's browser.
     
-    Both entry points must use the **same Paddle checkout/product** and ultimately produce the same authorization result.
+    Both entry points must use the **same Lemon Squeezy checkout/product** and ultimately produce the same authorization result.
     
     **After successful payment:**
     
-    1. Paddle confirms the transaction.
+    1. Lemon Squeezy confirms the transaction.
     2. The purchaser's email address is recorded as having an active Backbone entitlement.
     3. The entitlement is stored in the Backbone backend/database using Supabase.
     4. Backbone checks the user's email against this authorization record.
@@ -729,7 +729,7 @@ The website does not handle the purchase flow. Users download the application fi
     
     **Email matching**
     
-    The email used for the Paddle purchase must be the same email the user uses to access Backbone.
+    The email used for the Lemon Squeezy purchase must be the same email the user uses to access Backbone.
     
     The system should clearly communicate this to the user during the purchase flow.
     
@@ -743,7 +743,7 @@ The website does not handle the purchase flow. Users download the application fi
     
     **Important architectural principle**
     
-    The website and Backbone application should not maintain separate payment or authorization systems. Both should ultimately rely on the same Paddle product and the same backend authorization state.
+    The website and Backbone application should not maintain separate payment or authorization systems. Both should ultimately rely on the same Lemon Squeezy product and the same backend authorization state.
     
 - 5.5 backend responsibility
     
@@ -753,14 +753,14 @@ The website does not handle the purchase flow. Users download the application fi
     
     The website should only communicate with backend services where necessary for functionality such as:
     
-    - Paddle purchase/checkout integration.
+    - Lemon Squeezy purchase/checkout integration.
     - Communicating successful purchases to the authorization system where required.
     
     The website should not duplicate Backbone's application database, user data, task data, usage patterns, or other application functionality.
     
     The existing Backbone application and its backend remain the source of truth for user access and application data.
     
-    Technical implementation details for connecting Paddle, the authorization system, and Supabase should be determined during development after the Paddle account and production configuration are available.
+    Technical implementation details for connecting Lemon Squeezy, the authorization system, and Supabase should be determined during development after the Lemon Squeezy account and production configuration are available.
     
 - 5.6 Analytics — posthog
     

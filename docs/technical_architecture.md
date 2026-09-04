@@ -64,7 +64,7 @@
 > - Entire page markup
 > - All website sections
 > - Animation logic
-> - Paddle integration
+> - Lemon Squeezy integration
 > - GitHub download logic
 > - PostHog analytics
 > - OS detection
@@ -127,7 +127,7 @@
 > │   └── ui/
 > │
 > ├── integrations/
-> │   ├── paddle/
+> │   ├── lemonsqueezy/
 > │   ├── posthog/
 > │   └── github/
 > │
@@ -174,11 +174,11 @@
 > External services must be isolated from the visual components of the website wherever practical.
 > 
 > 
-> ### Paddle
+> ### Lemon Squeezy
 > 
-> Paddle-related configuration and integration logic should live in the Paddle integration layer.
+> Lemon Squeezy-related configuration and integration logic should live in the Lemon Squeezy integration layer.
 > 
-> Do not scatter Paddle-specific logic throughout unrelated components.
+> Do not scatter Lemon Squeezy-specific logic throughout unrelated components.
 > 
 > ### GitHub Downloads
 > 
@@ -256,7 +256,7 @@
 > 
 > Use environment variables or the appropriate secure configuration mechanism for:
 > 
-> - Paddle secrets
+> - Lemon Squeezy secrets
 > - Webhook secrets
 > - Private API credentials
 > - Other sensitive configuration

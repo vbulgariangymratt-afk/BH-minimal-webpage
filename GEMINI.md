@@ -14,7 +14,7 @@
   - **No God Files**: Never place unrelated responsibilities (page markup, integrations, animations, utils, pricing, analytics) into a single file.
   - **Separation of Concerns**: UI components handle rendering/presentation. Business logic, non-visual utilities, and integrations must live in separate modules.
   - **Component Independence**: Major sections (Hero, Downloads, Problems, Concept, Pricing, Post-purchase/Info, Footer) must be independent components.
-  - **Isolated Integrations**: External services (Paddle, PostHog, GitHub downloads) must be isolated in dedicated integration modules.
+  - **Isolated Integrations**: External services (Lemon Squeezy, PostHog, GitHub downloads) must be isolated in dedicated integration modules.
   - **Reuse Working Code**: Reuse existing working implementations (e.g. GitHub release downloads, OS detection) rather than rebuilding them from scratch.
   - **Minimal Dependencies & Simplicity**: Avoid introducing unnecessary libraries, enterprise abstractions, state management, or backend infrastructure unless required by a concrete requirement.
   - **Architectural Conflicts**: If a requested change conflicts with the architectural rules, explain the conflict explicitly to the user before proceeding rather than silently violating the architecture.

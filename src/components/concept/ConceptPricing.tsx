@@ -11,7 +11,7 @@ interface ConceptPricingProps {
  * ConceptPricing
  * 
  * Renders the bottom-right minimal pricing prompt (> $30usd a month), value proposition,
- * and Paddle checkout trigger button. Completely isolated from shadows and artwork.
+ * and Lemon Squeezy checkout trigger button. Completely isolated from shadows and artwork.
  */
 export function ConceptPricing({
   scrollProgress,

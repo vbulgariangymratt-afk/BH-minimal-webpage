@@ -42,25 +42,25 @@ export default function TermsPage() {
         <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
           <h2 className="text-lg font-medium text-white">2. Merchant of Record & Payment Processing</h2>
           <p>
-            Our order process is conducted by our online reseller Paddle.com. Paddle.com is the Merchant of Record for all our orders. Paddle provides all customer service inquiries and handles returns. Payment, billing, tax compliance, and transaction-level disputes are governed by{' '}
+            Our order process is conducted by our online reseller LemonSqueezy.com. LemonSqueezy.com (Lemon Squeezy LLC) is the Merchant of Record for all our orders. Lemon Squeezy provides order fulfillment, customer service inquiries, and handles returns. Payment, billing, tax compliance, and transaction-level disputes are governed by{' '}
             <a
-              href="https://www.paddle.com/legal/checkout-buyer-terms"
+              href="https://www.lemonsqueezy.com/terms"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-400 hover:underline font-medium"
             >
-              Paddle&apos;s Checkout Buyer Terms
+              Lemon Squeezy&apos;s Terms of Service
             </a>.
           </p>
           <p className="text-xs text-zinc-400">
-            When you purchase access to Backbone, your transaction is processed directly by Paddle.com (Paddle.com Market Ltd / Paddle Payments Ltd). Paddle is responsible for billing, issuing invoices and receipts with applicable sales taxes/VAT, and handling payment compliance. Charges on your credit card or bank statement will typically appear as <code className="bg-white/10 px-1.5 py-0.5 rounded text-zinc-200 font-mono">PADDLE.NET* BACKBONE</code>.
+            When you purchase access to Backbone, your transaction is processed directly by LemonSqueezy.com (Lemon Squeezy LLC). Lemon Squeezy is responsible for billing, issuing invoices and receipts with applicable sales taxes/VAT, and handling payment compliance. Charges on your credit card or bank statement will typically appear as <code className="bg-white/10 px-1.5 py-0.5 rounded text-zinc-200 font-mono">LEMONSQUEEZY* BACKBONE</code> (or <code className="bg-white/10 px-1.5 py-0.5 rounded text-zinc-200 font-mono">LMSQ* BACKBONE</code>).
           </p>
         </section>
 
         <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
           <h2 className="text-lg font-medium text-white">3. Access Period & No Automatic Renewals</h2>
           <p>
-            Backbone is purchased as an intentional 30-day access period for $30 (or localized currency equivalent calculated by Paddle).
+            Backbone is purchased as an intentional 30-day access period for $30 (or localized currency equivalent calculated by Lemon Squeezy).
           </p>
           <p>
             <strong>Zero Automatic Renewals:</strong> Backbone does not operate on recurring subscriptions. We will never automatically charge your card when your 30 days expire. You decide if and when you want to purchase another period.

@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import Script from 'next/script';
 import localFont from 'next/font/local';
 import './globals.css';
 import { PostHogProvider } from '@/components/providers/PostHogProvider';
@@ -76,6 +77,12 @@ export default function RootLayout({
             hoverDuration={0.2}
             parallaxOn={true}
             cursorColor="#ffffff"
+          />
+
+          {/* Lemon Squeezy Official Overlay & Checkout Script */}
+          <Script
+            src="https://assets.lemonsqueezy.com/lemon.js"
+            strategy="afterInteractive"
           />
         </PostHogProvider>
       </body>

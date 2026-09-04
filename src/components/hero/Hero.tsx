@@ -223,7 +223,7 @@ export function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className="cursor-target-zone sticky top-0 z-0 w-full h-[100dvh] lg:h-screen lg:min-h-[700px] pl-6 sm:pl-8 lg:pl-10 pr-6 sm:pr-8 pt-10 pb-10 lg:pt-8 lg:pb-6 lg:sm:pb-8 flex flex-col justify-start lg:justify-end bg-transparent overflow-visible lg:overflow-hidden select-none"
+      className="cursor-target-zone sticky top-0 z-0 w-full h-[100dvh] lg:h-screen lg:min-h-[700px] pl-6 sm:pl-8 lg:pl-10 pr-6 sm:pr-8 pt-2 pb-2 sm:pt-6 sm:pb-6 lg:pt-8 lg:pb-6 flex flex-col justify-start lg:justify-end bg-transparent overflow-visible lg:overflow-hidden select-none"
     >
       {/* 1. Full-Cover Parallax Background Canvas */}
       <div
@@ -249,7 +249,7 @@ export function Hero() {
       </div>
 
       {/* 2. Content Row */}
-      <div className="w-full flex-1 flex flex-col lg:flex-row justify-between gap-6 lg:gap-8 pb-1 sm:pb-2">
+      <div className="w-full flex-1 flex flex-col lg:flex-row justify-start lg:justify-between gap-2.5 sm:gap-4 lg:gap-8 pb-1 sm:pb-2">
 
         {/* DESKTOP ONLY: original left column, headline + downloads together, untouched */}
         <div className="hidden lg:flex lg:flex-col items-start gap-4 max-w-xl xl:max-w-2xl text-left select-none self-end">
@@ -266,7 +266,7 @@ export function Hero() {
         </div>
 
         {/* MOBILE ONLY: headline, shown first */}
-        <div className="lg:hidden order-1 w-full text-left pointer-events-none pt-8">
+        <div className="lg:hidden order-1 w-full text-left pointer-events-none pt-0">
           <h1
             ref={mobileH1Ref}
             className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mix-blend-difference leading-[0.96] text-left"
@@ -279,7 +279,7 @@ export function Hero() {
         {/* Video Container - single instance, reordered on mobile only */}
         <div
           ref={videoCardRef}
-          className="order-2 lg:order-none relative lg:self-center w-full max-w-[280px] sm:max-w-[320px] mx-auto lg:mx-0 lg:w-auto lg:max-w-none h-auto lg:h-[86vh] lg:max-h-[820px] lg:min-h-[540px] aspect-[9/16] rounded-[30px] overflow-hidden shadow-[0_35px_80px_rgba(0,0,0,0.55)] border border-black/20 bg-black/60 backdrop-blur-xl shrink-0 mr-auto lg:mr-52 xl:mr-64 my-2 lg:my-auto"
+          className="order-2 lg:order-none relative lg:self-center w-auto h-[38dvh] max-h-[330px] sm:max-h-[380px] aspect-[9/16] mx-auto lg:mx-0 lg:w-auto lg:max-w-none lg:h-[86vh] lg:max-h-[820px] lg:min-h-[540px] rounded-[30px] overflow-hidden shadow-[0_35px_80px_rgba(0,0,0,0.55)] border border-black/20 bg-black/60 backdrop-blur-xl shrink-0 mr-auto lg:mr-52 xl:mr-64 my-0 lg:my-auto"
         >
           <iframe
             ref={iframeRef}
