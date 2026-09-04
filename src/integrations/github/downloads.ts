@@ -1,6 +1,6 @@
 export const GITHUB_DOWNLOADS = {
-  windows: 'https://github.com/vbulgariangymratt-afk/Backbone-s-minimal-webpage/releases/latest/download/Backbone-Setup.exe',
-  macOS: 'https://github.com/vbulgariangymratt-afk/Backbone-s-minimal-webpage/releases/latest/download/Backbone.dmg',
+  windows: 'https://github.com/vbulgariangymratt-afk/BH-minimal-webpage/releases/download/latest/Backbone-Setup.exe',
+  macOS: 'https://github.com/vbulgariangymratt-afk/BH-minimal-webpage/releases/download/latest/Backbone.zip',
 } as const;
 
 export type SupportedOS = 'mac' | 'windows' | 'unknown';
