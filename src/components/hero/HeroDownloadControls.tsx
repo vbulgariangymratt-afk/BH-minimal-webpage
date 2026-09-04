@@ -37,6 +37,7 @@ export function HeroDownloadControls() {
       <div className="flex items-center flex-wrap gap-x-4 gap-y-2 text-xs sm:text-sm font-mono lowercase tracking-wider text-white">
         <a
           href={GITHUB_DOWNLOADS.macOS}
+          download
           onClick={() => handleDownloadClick('macOS')}
           className="cursor-target group transition-opacity hover:opacity-80 flex items-center gap-1.5"
         >

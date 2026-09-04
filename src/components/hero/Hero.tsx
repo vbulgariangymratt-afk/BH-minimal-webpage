@@ -249,7 +249,7 @@ export function Hero() {
       </div>
 
       {/* 2. Content Row */}
-      <div className="w-full flex-1 flex flex-col lg:flex-row justify-start lg:justify-between gap-2.5 sm:gap-4 lg:gap-8 pb-1 sm:pb-2">
+      <div className="w-full flex-1 flex flex-col lg:flex-row justify-start lg:justify-between gap-4 sm:gap-5 lg:gap-8 pb-1 sm:pb-2">
 
         {/* DESKTOP ONLY: original left column, headline + downloads together, untouched */}
         <div className="hidden lg:flex lg:flex-col items-start gap-4 max-w-xl xl:max-w-2xl text-left select-none self-end">
@@ -279,7 +279,7 @@ export function Hero() {
         {/* Video Container - single instance, reordered on mobile only */}
         <div
           ref={videoCardRef}
-          className="order-2 lg:order-none relative lg:self-center w-auto h-[38dvh] max-h-[330px] sm:max-h-[380px] aspect-[9/16] mx-auto lg:mx-0 lg:w-auto lg:max-w-none lg:h-[86vh] lg:max-h-[820px] lg:min-h-[540px] rounded-[30px] overflow-hidden shadow-[0_35px_80px_rgba(0,0,0,0.55)] border border-black/20 bg-black/60 backdrop-blur-xl shrink-0 mr-auto lg:mr-52 xl:mr-64 my-0 lg:my-auto"
+          className="order-2 lg:order-none relative lg:self-center w-auto h-[56dvh] max-h-[490px] sm:max-h-[540px] aspect-[9/16] mx-auto lg:mx-0 lg:w-auto lg:max-w-none lg:h-[86vh] lg:max-h-[820px] lg:min-h-[540px] rounded-[30px] overflow-hidden shadow-[0_35px_80px_rgba(0,0,0,0.55)] border border-black/20 bg-black/60 backdrop-blur-xl shrink-0 mr-auto lg:mr-52 xl:mr-64 my-0 lg:my-auto"
         >
           <iframe
             ref={iframeRef}
