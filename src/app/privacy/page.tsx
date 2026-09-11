@@ -43,7 +43,7 @@ export default function PrivacyPage() {
           </p>
           <ul className="list-disc pl-5 space-y-2 text-xs text-zinc-400">
             <li>
-              <strong>Account & Email Address:</strong> We collect your email address purely as your unique account identifier to verify your Lemon Squeezy purchase, unlock your license, and sync your data across devices. <em>We will never send you promotional newsletters, marketing spam, or unsolicited emails.</em>
+              <strong>Account & Email Address:</strong> We collect your email address purely as your unique account identifier to verify your Stripe purchase, unlock your license, and sync your data across devices. <em>We will never send you promotional newsletters, marketing spam, or unsolicited emails.</em>
             </li>
             <li>
               <strong>Application Data:</strong> Projects, hierarchical tasks, predicted vs. actual satisfaction ratings, sleep/wake times, and optional medication logs you enter into Backbone to run its executive function compensation system.
@@ -52,7 +52,7 @@ export default function PrivacyPage() {
               <strong>Technical & Telemetry Data (via PostHog):</strong> When you visit our website or use the application, standard diagnostic telemetry is automatically recorded—including your IP address, approximate geographical region (country/city), operating system (macOS/Windows/Linux), browser type, screen resolution, error/crash logs, and interaction events (such as download clicks and checkout initiation). This data is strictly used for debugging, app stability, and preventing abuse.
             </li>
             <li>
-              <strong>Payment Information:</strong> All transactions are processed directly by our Merchant of Record, Lemon Squeezy. Backbone never collects, sees, or stores your credit card numbers, CVVs, or financial billing details.
+              <strong>Payment Information:</strong> All transactions are processed securely by Stripe. Backbone never collects, sees, or stores your credit card numbers, CVVs, or financial billing details.
             </li>
           </ul>
         </section>
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
         </section>
 
         <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
-          <h2 className="text-lg font-medium text-white">3. Third-Party Infrastructure & Merchant of Record</h2>
+          <h2 className="text-lg font-medium text-white">3. Third-Party Infrastructure & Payment Processing</h2>
           <p>
             Backbone relies on trusted, industry-standard service providers to deliver secure infrastructure and payments:
           </p>
@@ -90,7 +90,7 @@ export default function PrivacyPage() {
           <ul className="list-disc pl-5 space-y-1.5 text-xs text-zinc-400">
             <li><strong>Performance of a Contract:</strong> Processing your email and account information to provide software access, verify entitlements, and enable multi-device synchronization.</li>
             <li><strong>Legitimate Interests:</strong> Processing diagnostic telemetry and crash logs (via PostHog) to protect software integrity, resolve errors, and prevent malicious abuse.</li>
-            <li><strong>Legal Obligations:</strong> Compliance with statutory financial, legal, and tax reporting requirements handled in partnership with Lemon Squeezy.</li>
+            <li><strong>Legal Obligations:</strong> Compliance with statutory financial, legal, and tax reporting requirements handled in partnership with Stripe.</li>
           </ul>
         </section>
 

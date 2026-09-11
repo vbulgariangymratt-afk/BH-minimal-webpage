@@ -52,7 +52,7 @@ export default function TermsPage() {
         <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
           <h2 className="text-lg font-medium text-white">3. Access Period & No Automatic Renewals</h2>
           <p>
-            Backbone is purchased as an intentional 30-day access period for $30 (or localized currency equivalent calculated by Lemon Squeezy).
+            Backbone is purchased as an intentional 30-day access period for $30 (or localized currency equivalent calculated by Stripe).
           </p>
           <p>
             <strong>Zero Automatic Renewals:</strong> Backbone does not operate on recurring subscriptions. We will never automatically charge your card when your 30 days expire. You decide if and when you want to purchase another period.

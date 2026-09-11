@@ -24,6 +24,6 @@ export const PRICING_PLAN: PricingPlan = {
     'Unlimited everything basically',
   ],
   ctaLabel: 'Become a boner',
-  securityNote: 'Processed securely via Lemon Squeezy Merchant of Record',
+  securityNote: 'Processed securely via Stripe',
   purchaseNote: 'Log in with the same email u bought this with, otherwise it wont unlock',
 };

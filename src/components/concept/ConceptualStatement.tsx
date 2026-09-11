@@ -18,7 +18,7 @@ import { ConceptPricing } from './ConceptPricing';
  * 2. ConceptShadow — Dedicated convex curved gradient shadow
  * 3. ConceptMedusa — Top-right broken marble sculpture with radial vignette
  * 4. ConceptHeadline — Top-left multilingual decrypting cypher headline
- * 5. ConceptPricing — Bottom-right typewriter pricing prompt & Lemon Squeezy checkout button
+ * 5. ConceptPricing — Bottom-right typewriter pricing prompt & Stripe checkout button
  */
 export function ConceptualStatement() {
   const sectionRef = useRef<HTMLElement>(null);
