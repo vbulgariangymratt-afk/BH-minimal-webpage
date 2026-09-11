@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://backbone.so';
+  const baseUrl = 'https://backbonehierarchy.com';
 
   return [
     {

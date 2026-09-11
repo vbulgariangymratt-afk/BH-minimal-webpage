@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 type YouTubeCommandArg = string | number | boolean | Record<string, unknown>;
 
-const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_URL || 'https://backbone.so';
+const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_URL || 'https://backbonehierarchy.com';
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);

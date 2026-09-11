@@ -35,13 +35,13 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: 'Backbone — Prosthetic brain for ADHD founders & entrepreneurs',
   description: 'Prosthetic brain for ADHD founders & entrepreneurs. Built by Maximiliano Sors Garza.',
-  metadataBase: new URL('https://backbone.so'),
+  metadataBase: new URL('https://backbonehierarchy.com'),
   authors: [{ name: 'Maximiliano Sors Garza', url: 'https://x.com/vz_warhead' }],
   creator: 'Maximiliano Sors Garza',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://backbone.so',
+    url: 'https://backbonehierarchy.com',
     title: 'Backbone — Prosthetic brain for ADHD founders & entrepreneurs',
     description: 'Prosthetic brain for ADHD founders & entrepreneurs.',
     siteName: 'Backbone',

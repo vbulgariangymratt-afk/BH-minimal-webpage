@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://backbone.so/sitemap.xml',
+    sitemap: 'https://backbonehierarchy.com/sitemap.xml',
   };
 }
