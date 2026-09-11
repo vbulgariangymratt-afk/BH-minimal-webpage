@@ -37,6 +37,9 @@ export default function TermsPage() {
           <p className="text-xs text-zinc-400">
             <strong>Acceptable Use:</strong> You agree not to: (a) copy, modify, distribute, resell, sublicense, or commercially exploit Backbone; (b) reverse engineer, decompile, or attempt to extract source code; (c) attempt to probe, scan, or breach system security; or (d) use Backbone for any unlawful purpose.
           </p>
+          <p className="text-xs text-zinc-400">
+            <strong>Non-Medical Disclaimer:</strong> Backbone is a digital productivity and task organization software application. It is not a medical device, healthcare service, or therapeutic intervention, and does not provide clinical diagnosis, medical treatment, or therapy for ADHD or any other physical, mental, or neurological condition.
+          </p>
         </section>
 
         <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
