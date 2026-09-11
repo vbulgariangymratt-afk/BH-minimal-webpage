@@ -40,29 +40,13 @@ export default function RefundPage() {
             <a href="mailto:vbulgariangymratt@gmail.com" className="text-blue-400 hover:underline">
               vbulgariangymratt@gmail.com
             </a>{' '}
-            with your Lemon Squeezy purchase email or transaction order number.
+            with your purchase email or transaction order number.
           </p>
           <p className="text-xs text-zinc-400">
-            Alternatively, you can manage your order or request assistance directly through the transaction receipt email issued to you by Lemon Squeezy or via the Lemon Squeezy Customer Portal at{' '}
-            <a
-              href="https://app.lemonsqueezy.com/my-orders"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:underline font-medium"
-            >
-              app.lemonsqueezy.com/my-orders
-            </a>.
+            Alternatively, you can manage your order or request assistance directly through the transaction receipt email issued to you by Stripe.
           </p>
           <p className="text-xs text-zinc-400">
-            Once a refund is approved, Lemon Squeezy will issue the funds back to your original payment method (credit card, PayPal, etc.). Refunds typically reflect on your bank or card statement within <strong>3 to 5 business days</strong>. All purchases and refund processing are subject to{' '}
-            <a
-              href="https://www.lemonsqueezy.com/terms"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:underline"
-            >
-              Lemon Squeezy&apos;s Terms of Service
-            </a>.
+            Once a refund is approved, Stripe will issue the funds back to your original payment method (credit card, Apple Pay, etc.). Refunds typically reflect on your bank or card statement within <strong>3 to 5 business days</strong>. All purchases and refund processing are subject to Stripe&apos;s terms and policies.
           </p>
         </section>
 

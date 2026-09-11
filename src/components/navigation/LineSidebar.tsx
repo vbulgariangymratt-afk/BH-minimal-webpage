@@ -40,7 +40,7 @@ export interface LineSidebarProps {
 const DEFAULT_SECTIONS: LineSidebarItem[] = [
   { label: 'DOWNLOAD', sectionId: 'hero' },
   { label: 'FIXES FOR U', sectionId: 'problems' },
-  { label: 'MONEEEEY', sectionId: 'concept' },
+  { label: 'BUY HEEERE', sectionId: 'concept' },
   { label: 'READ THIS SHIDD', sectionId: 'important' },
 ];
 

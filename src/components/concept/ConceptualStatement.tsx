@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { openLemonSqueezyCheckout } from '@/integrations/lemonsqueezy';
 import { captureEvent } from '@/integrations/posthog';
 import { PRICING_PLAN } from '@/data/pricing';
 
@@ -28,7 +27,8 @@ export function ConceptualStatement() {
 
   const handlePurchaseClick = () => {
     captureEvent('checkout_initiated', { plan: PRICING_PLAN.id, price: PRICING_PLAN.price });
-    openLemonSqueezyCheckout();
+    const stripeUrl = process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_URL || 'https://buy.stripe.com/test_4gM8wQ2dvd3f4TNbca0kE00';
+    window.open(stripeUrl, '_blank', 'noopener,noreferrer');
   };
 
   useEffect(() => {

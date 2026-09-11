@@ -40,20 +40,12 @@ export default function TermsPage() {
         </section>
 
         <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
-          <h2 className="text-lg font-medium text-white">2. Merchant of Record & Payment Processing</h2>
+          <h2 className="text-lg font-medium text-white">2. Payment Processing</h2>
           <p>
-            Our order process is conducted by our online reseller LemonSqueezy.com. LemonSqueezy.com (Lemon Squeezy LLC) is the Merchant of Record for all our orders. Lemon Squeezy provides order fulfillment, customer service inquiries, and handles returns. Payment, billing, tax compliance, and transaction-level disputes are governed by{' '}
-            <a
-              href="https://www.lemonsqueezy.com/terms"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:underline font-medium"
-            >
-              Lemon Squeezy&apos;s Terms of Service
-            </a>.
+            Our order process is conducted by Stripe. Stripe provides order fulfillment, handles returns, and manages secure payment processing. Payment, billing, tax compliance, and transaction-level disputes are governed by Stripe&apos;s terms of service and privacy policies.
           </p>
           <p className="text-xs text-zinc-400">
-            When you purchase access to Backbone, your transaction is processed directly by LemonSqueezy.com (Lemon Squeezy LLC). Lemon Squeezy is responsible for billing, issuing invoices and receipts with applicable sales taxes/VAT, and handling payment compliance. Charges on your credit card or bank statement will typically appear as <code className="bg-white/10 px-1.5 py-0.5 rounded text-zinc-200 font-mono">LEMONSQUEEZY* BACKBONE</code> (or <code className="bg-white/10 px-1.5 py-0.5 rounded text-zinc-200 font-mono">LMSQ* BACKBONE</code>).
+            When you purchase access to Backbone, your transaction is processed directly by Stripe. Charges on your credit card or bank statement will typically appear as <code className="bg-white/10 px-1.5 py-0.5 rounded text-zinc-200 font-mono">STRIPE* BACKBONE</code>.
           </p>
         </section>
 

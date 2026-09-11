@@ -71,15 +71,7 @@ export default function PrivacyPage() {
           </p>
           <ul className="list-disc pl-5 space-y-2 text-xs text-zinc-400">
             <li>
-              <strong>Lemon Squeezy (Merchant of Record & Independent Data Controller):</strong> Our order and checkout process is conducted by our online reseller LemonSqueezy.com (Lemon Squeezy LLC). Lemon Squeezy acts as the Merchant of Record and an independent data controller for buyer transaction data (such as billing address, country, tax ID, and payment instrument details) for order fulfillment, billing, invoicing, fraud detection, and global tax (VAT/GST/Sales Tax) compliance. Backbone never collects, sees, or stores your credit card numbers. All payment data is processed under the{' '}
-              <a
-                href="https://www.lemonsqueezy.com/privacy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-400 hover:underline font-medium"
-              >
-                Lemon Squeezy Privacy Policy
-              </a>.
+              <strong>Stripe (Payment Processing & Data Controller):</strong> Our order and checkout process is conducted by Stripe. Stripe acts as an independent data controller for buyer transaction data (such as billing address, country, tax ID, and payment instrument details) for order fulfillment, billing, invoicing, fraud detection, and global tax compliance. Backbone never collects, sees, or stores your credit card numbers. All payment data is processed under Stripe&apos;s Privacy Policy.
             </li>
             <li>
               <strong>Supabase:</strong> Encrypted cloud database and authentication infrastructure used to store your tasks and verify your access.

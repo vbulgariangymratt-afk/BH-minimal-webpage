@@ -79,11 +79,6 @@ export default function RootLayout({
             cursorColor="#ffffff"
           />
 
-          {/* Lemon Squeezy Official Overlay & Checkout Script */}
-          <Script
-            src="https://assets.lemonsqueezy.com/lemon.js"
-            strategy="afterInteractive"
-          />
         </PostHogProvider>
       </body>
     </html>
