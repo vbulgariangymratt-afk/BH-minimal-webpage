@@ -64,7 +64,7 @@
 > - Entire page markup
 > - All website sections
 > - Animation logic
-> - Lemon Squeezy integration
+> - Stripe Payment Link integration
 > - GitHub download logic
 > - PostHog analytics
 > - OS detection
@@ -127,7 +127,6 @@
 > │   └── ui/
 > │
 > ├── integrations/
-> │   ├── lemonsqueezy/
 > │   ├── posthog/
 > │   └── github/
 > │
@@ -174,11 +173,11 @@
 > External services must be isolated from the visual components of the website wherever practical.
 > 
 > 
-> ### Lemon Squeezy
+> ### Stripe Payments
 > 
-> Lemon Squeezy-related configuration and integration logic should live in the Lemon Squeezy integration layer.
+> Stripe Payment Link URL and configuration should be managed via environment variables (`NEXT_PUBLIC_STRIPE_PAYMENT_LINK_URL`).
 > 
-> Do not scatter Lemon Squeezy-specific logic throughout unrelated components.
+> Do not scatter payment-specific logic throughout unrelated components.
 > 
 > ### GitHub Downloads
 > 
@@ -256,7 +255,7 @@
 > 
 > Use environment variables or the appropriate secure configuration mechanism for:
 > 
-> - Lemon Squeezy secrets
+> - Stripe secrets
 > - Webhook secrets
 > - Private API credentials
 > - Other sensitive configuration

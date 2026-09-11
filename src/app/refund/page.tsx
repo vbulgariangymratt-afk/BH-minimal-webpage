@@ -22,7 +22,7 @@ export default function RefundPage() {
             Refund Policy
           </h1>
           <p className="text-xs text-zinc-500 mt-2">
-            Last updated: August 2026 &bull; Seller: Maximiliano Sors Garza
+            Last updated: August 2026 &bull; Seller: Maximiliano Sors Garza &bull; Monterrey, Nuevo Leon, Mexico
           </p>
         </div>
 
@@ -43,6 +43,9 @@ export default function RefundPage() {
             with your purchase email or transaction order number.
           </p>
           <p className="text-xs text-zinc-400">
+            Support response time: I reply as soon as I see the message, usually under 24 hours. Business location: Monterrey, Nuevo Leon, Mexico.
+          </p>
+          <p className="text-xs text-zinc-400">
             Alternatively, you can manage your order or request assistance directly through the transaction receipt email issued to you by Stripe.
           </p>
           <p className="text-xs text-zinc-400">
@@ -51,7 +54,14 @@ export default function RefundPage() {
         </section>
 
         <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
-          <h2 className="text-lg font-medium text-white">2. No Recurring Subscriptions or Hidden Charges</h2>
+          <h2 className="text-lg font-medium text-white">2. Digital Delivery & Fulfillment</h2>
+          <p>
+            Backbone is delivered digitally. Upon purchase, software access is activated immediately. You can download the desktop application from the website and log in using your purchase email to unlock full access.
+          </p>
+        </section>
+
+        <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
+          <h2 className="text-lg font-medium text-white">3. No Recurring Subscriptions or Hidden Charges</h2>
           <p>
             Backbone operates on standalone, intentional 30-day access passes. There is no recurring monthly subscription, and you will never be automatically charged or debited when your 30-day pass expires.
           </p>

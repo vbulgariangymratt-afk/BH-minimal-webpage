@@ -22,7 +22,7 @@ export default function TermsPage() {
             Terms & Conditions
           </h1>
           <p className="text-xs text-zinc-500 mt-2">
-            Last updated: August 2026 &bull; Seller: Maximiliano Sors Garza
+            Last updated: August 2026 &bull; Seller: Maximiliano Sors Garza &bull; Monterrey, Nuevo Leon, Mexico
           </p>
         </div>
 
@@ -50,7 +50,14 @@ export default function TermsPage() {
         </section>
 
         <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
-          <h2 className="text-lg font-medium text-white">3. Access Period & No Automatic Renewals</h2>
+          <h2 className="text-lg font-medium text-white">3. Digital Delivery & Fulfillment</h2>
+          <p>
+            Backbone is delivered digitally. Upon purchase, software access is activated immediately. You can download the desktop application from the website and log in using your purchase email to unlock full access.
+          </p>
+        </section>
+
+        <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
+          <h2 className="text-lg font-medium text-white">4. Access Period & No Automatic Renewals</h2>
           <p>
             Backbone is purchased as an intentional 30-day access period for $30 (or localized currency equivalent calculated by Stripe).
           </p>
@@ -60,7 +67,7 @@ export default function TermsPage() {
         </section>
 
         <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
-          <h2 className="text-lg font-medium text-white">4. Service Availability & Limitation of Liability</h2>
+          <h2 className="text-lg font-medium text-white">5. Service Availability & Limitation of Liability</h2>
           <p>
             Backbone is provided on an &ldquo;AS IS&rdquo; and &ldquo;AS AVAILABLE&rdquo; basis without warranties of any kind, whether express or implied. While every effort is made to ensure smooth, bug-free operation, Backbone does not guarantee uninterrupted service.
           </p>
@@ -70,21 +77,21 @@ export default function TermsPage() {
         </section>
 
         <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
-          <h2 className="text-lg font-medium text-white">5. User Data & Responsibility</h2>
+          <h2 className="text-lg font-medium text-white">6. User Data & Responsibility</h2>
           <p>
             You are responsible for the data you enter, modify, or delete within Backbone, as well as keeping your login credentials secure. While Backbone uses secure cloud database infrastructure, recovery of user-deleted records cannot be guaranteed.
           </p>
         </section>
 
         <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
-          <h2 className="text-lg font-medium text-white">6. Governing Law</h2>
+          <h2 className="text-lg font-medium text-white">7. Governing Law</h2>
           <p>
             These Terms and any dispute arising from your use of Backbone shall be governed by and construed in accordance with applicable laws, without giving effect to any conflict of law principles.
           </p>
         </section>
 
         <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
-          <h2 className="text-lg font-medium text-white">7. Contact & Support</h2>
+          <h2 className="text-lg font-medium text-white">8. Contact & Support</h2>
           <p>
             For any questions regarding these Terms, licensing, or support, reach out to Maximiliano on X/Twitter at{' '}
             <a href="https://x.com/vz_warhead" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline font-medium">
@@ -94,6 +101,9 @@ export default function TermsPage() {
             <a href="mailto:vbulgariangymratt@gmail.com" className="text-blue-400 hover:underline">
               vbulgariangymratt@gmail.com
             </a>.
+          </p>
+          <p className="text-xs text-zinc-400">
+            Support response time: I reply as soon as I see the message, usually under 24 hours. Business location: Monterrey, Nuevo Leon, Mexico.
           </p>
         </section>
 

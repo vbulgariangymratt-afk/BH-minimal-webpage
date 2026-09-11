@@ -13,7 +13,7 @@ export function Footer() {
             Backbone
           </p>
           <p className="text-zinc-500">
-            Built & maintained by <strong className="text-zinc-400 font-normal">Maximiliano Sors Garza</strong>.
+            Built & maintained by <strong className="text-zinc-400 font-normal">Maximiliano Sors Garza</strong> &bull; Monterrey, Nuevo Leon, Mexico.
           </p>
           <p className="text-zinc-600 text-[11px]">
             &copy; {currentYear} Maximiliano Sors Garza. All rights reserved.
