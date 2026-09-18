@@ -13,10 +13,10 @@ export function Footer() {
             Backbone
           </p>
           <p className="text-zinc-500">
-            Built & maintained by <strong className="text-zinc-400 font-normal">Maximiliano Sors Garza</strong> &bull; Monterrey, Nuevo Leon, Mexico.
+            Operated by <strong className="text-zinc-400 font-normal">Perla Garza Leal</strong> &bull; Built &amp; maintained by <strong className="text-zinc-400 font-normal">Maximiliano Sors Garza</strong>
           </p>
           <p className="text-zinc-600 text-[11px]">
-            &copy; {currentYear} Maximiliano Sors Garza. All rights reserved.
+            &copy; 2026 Backbone. All rights reserved.
           </p>
         </div>
 

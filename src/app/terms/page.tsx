@@ -22,7 +22,7 @@ export default function TermsPage() {
             Terms & Conditions
           </h1>
           <p className="text-xs text-zinc-500 mt-2">
-            Last updated: August 2026 &bull; Seller: Maximiliano Sors Garza &bull; Monterrey, Nuevo Leon, Mexico
+            Last updated: September 2026 &bull; Owner &amp; Developer: Maximiliano Sors Garza &bull; Legal Operator: Perla Garza Leal &bull; Monterrey, Nuevo Leon, Mexico
           </p>
         </div>
 
@@ -47,6 +47,9 @@ export default function TermsPage() {
           <p>
             Our order process is conducted by Stripe. Stripe provides order fulfillment, handles returns, and manages secure payment processing. Payment, billing, tax compliance, and transaction-level disputes are governed by Stripe&apos;s terms of service and privacy policies.
           </p>
+          <p>
+            Backbone products and services are legally distributed and billed under Perla Garza Leal (RFC/Fiscal Entity in Mexico).
+          </p>
           <p className="text-xs text-zinc-400">
             When you purchase access to Backbone, your transaction is processed directly by Stripe. Charges on your credit card or bank statement will typically appear as <code className="bg-white/10 px-1.5 py-0.5 rounded text-zinc-200 font-mono">STRIPE* BACKBONE</code>.
           </p>
@@ -62,7 +65,7 @@ export default function TermsPage() {
         <section className="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-6">
           <h2 className="text-lg font-medium text-white">4. Access Period & No Automatic Renewals</h2>
           <p>
-            Backbone is purchased as an intentional 30-day access period for $30 (or localized currency equivalent calculated by Stripe).
+            Backbone is purchased as an intentional 30-day access period for 500 MXN (or the localized currency equivalent calculated by Stripe).
           </p>
           <p>
             <strong>Zero Automatic Renewals:</strong> Backbone does not operate on recurring subscriptions. We will never automatically charge your card when your 30 days expire. You decide if and when you want to purchase another period.
@@ -112,7 +115,7 @@ export default function TermsPage() {
 
         {/* Footer cross-links */}
         <div className="pt-10 border-t border-white/5 flex flex-wrap items-center justify-between text-xs text-zinc-500 gap-4">
-          <p>&copy; {new Date().getFullYear()} Maximiliano Sors Garza</p>
+          <p>&copy; 2026 Backbone. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <Link href="/privacy" className="hover:text-zinc-300 transition-colors">
               Privacy Policy

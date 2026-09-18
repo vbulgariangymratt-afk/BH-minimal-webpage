@@ -231,19 +231,19 @@ The website does not handle the purchase flow directly. Users download the appli
     
 - 3.1 Seller identity
     
-    **Seller / Owner:** Maximiliano Sors Garza
+    **Seller / Owner / Developer:** Maximiliano Sors Garza
     
     **Role:** Owner, developer, and person responsible for Backbone
     
-    **Business structure:** Individual / sole proprietor for now
+    **Legal Fiscal Operator (Mexico payments):** Perla Garza Leal
+    
+    **Business structure:** Individual / sole proprietor. Perla Garza Leal's RFC is used for Mexican payment processing through Stripe until Maximiliano obtains his own RFC. She is the fiscal operator only — not the owner, developer, or seller of Backbone.
     
     **Product:** Backbone
     
-    **Brand name:** TBD — Backbone / Neurodivergence
+    **Brand name:** Backbone
     
-    The website and legal documents should identify Maximiliano Sors Garza as the seller/owner of the product.
-    
-    Do not identify my mother as the owner or seller. She is not involved in developing, operating, or owning Backbone.
+    The website and legal documents should identify Maximiliano Sors Garza as the owner, developer, and seller of the product. Perla Garza Leal should be identified only as the legal operator for payment processing purposes (footer and legal pages). Do not imply she owns or develops Backbone.
     
 - 3.2 terms and conditions
     

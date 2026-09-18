@@ -22,7 +22,7 @@ export default function RefundPage() {
             Refund Policy
           </h1>
           <p className="text-xs text-zinc-500 mt-2">
-            Last updated: August 2026 &bull; Seller: Maximiliano Sors Garza &bull; Monterrey, Nuevo Leon, Mexico
+            Last updated: September 2026 &bull; Owner &amp; Developer: Maximiliano Sors Garza &bull; Legal Operator: Perla Garza Leal &bull; Monterrey, Nuevo Leon, Mexico
           </p>
         </div>
 
@@ -69,7 +69,7 @@ export default function RefundPage() {
 
         {/* Footer cross-links */}
         <div className="pt-10 border-t border-white/5 flex flex-wrap items-center justify-between text-xs text-zinc-500 gap-4">
-          <p>&copy; {new Date().getFullYear()} Maximiliano Sors Garza</p>
+          <p>&copy; 2026 Backbone. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <Link href="/terms" className="hover:text-zinc-300 transition-colors">
               Terms & Conditions

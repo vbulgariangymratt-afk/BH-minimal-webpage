@@ -27,7 +27,7 @@ export function ConceptualStatement() {
 
   const handlePurchaseClick = () => {
     captureEvent('checkout_initiated', { plan: PRICING_PLAN.id, price: PRICING_PLAN.price });
-    const stripeUrl = process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_URL || 'https://buy.stripe.com/test_4gM8wQ2dvd3f4TNbca0kE00';
+    const stripeUrl = process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_URL || 'https://buy.stripe.com/28E9AUcNY1A96XUaCMejK01';
     window.open(stripeUrl, '_blank', 'noopener,noreferrer');
   };
 

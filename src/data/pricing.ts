@@ -3,6 +3,7 @@ export interface PricingPlan {
   name: string;
   subtitle: string;
   price: number;
+  currency: string;
   period: string;
   description: string;
   features: string[];
@@ -15,7 +16,8 @@ export const PRICING_PLAN: PricingPlan = {
   id: '30_days_access',
   name: 'Backbone Access',
   subtitle: '30-day full access',
-  price: 30,
+  price: 500,
+  currency: 'MXN',
   period: '/ 30 days',
   description: 'Complete & unlimited access to Backbone for 30 days, including any and all future updates I release to help our brains (cuz I use it as well).',
   features: [

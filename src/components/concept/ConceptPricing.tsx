@@ -1,5 +1,6 @@
 import React from 'react';
 import { PRICING_PLAN } from '@/data/pricing';
+import { useLocalPrice } from '@/lib/useLocalPrice';
 
 interface ConceptPricingProps {
   scrollProgress: number;
@@ -10,14 +11,15 @@ interface ConceptPricingProps {
 /**
  * ConceptPricing
  * 
- * Renders the bottom-right minimal pricing prompt (> $30usd a month), value proposition,
+ * Renders the bottom-right minimal pricing prompt (> price in the visitor's local currency / 30 days), value proposition,
  * and Stripe checkout trigger button. Always fully visible, no scroll-triggered reveal.
  */
 export function ConceptPricing({
   onPurchaseClick,
   className = '',
 }: ConceptPricingProps) {
-  const NOTE_PRICE = `$${PRICING_PLAN.price}usd a month`;
+  const localPrice = useLocalPrice(PRICING_PLAN.price, PRICING_PLAN.currency);
+  const NOTE_PRICE = `${localPrice} / 30 days`;
   const NOTE_BODY = "you get the full desktop app, unlimited usage and\nyou officially become a boner";
 
   return (
@@ -32,7 +34,7 @@ export function ConceptPricing({
         }
       }}
       className={`cursor-target group self-end flex flex-col items-start text-left max-w-md lg:max-w-xl gap-3 z-10 sm:mr-16 md:mr-24 lg:mr-36 xl:mr-44 pb-8 sm:pb-12 lg:pb-16 cursor-pointer select-none transition-opacity focus:outline-none ${className}`}
-      aria-label="Purchase Backbone subscription"
+      aria-label="Purchase Backbone 30-day access"
     >
       {/* Level 0: Price Prompt */}
       <div className="min-h-[2rem] flex items-center gap-2 font-mono text-base sm:text-lg md:text-xl text-zinc-300 tracking-wide">
